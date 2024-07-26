@@ -1,0 +1,21 @@
+{
+  "startStopButtonText": "Démarrer/Arrêter",
+  "doubleButtonText": "Coup double",
+  "resetButtonText": "Réinitialiser",
+  "offerPermissionText": "Veuillez accorder l’autorisation à la caméra et au microphone à partir des informations de l’application.",
+  "offerPermissionDialogTitle": "Vous n’avez pas l’autorisation.",
+  "videoPageTitle": "Lecture vidéo",
+  "videoSaveSuccessMessage": "La vidéo a été enregistrée avec succès.",
+  "settingsTitle": "Paramètres",
+  "enable": "Activer",
+  "disable": "Désactiver",
+  "right": "Droite",
+  "left": "Gauche",
+  "videoEnableOptionText": "Fonction de prise de vidéo",
+  "videoAutosaveOptionText": "Fonction d’enregistrement automatique de la vidéo",
+  "videoAutosaveOptionSubText": "La vidéo sera enregistrée dans le dossier de la galerie.",
+  "videoPreviewSizeOptionText": "Taille de l’écran de prévisualisation vidéo",
+  "videoPositionOptionText": "Position de l’écran de prévisualisation vidéo lorsque le smartphone est tenu horizontalement",
+  "doubleButtonOptionText": "Bouton Coup double",
+  "privacyPolicy": "Politique de confidentialité"
+}

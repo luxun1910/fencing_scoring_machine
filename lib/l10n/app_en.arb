@@ -1,0 +1,27 @@
+{
+  "startStopButtonText": "Start/Stop",
+  "@startStopButtonText": {
+    "description": "タイマースタート/ストップボタンのテキスト"
+  },
+  "doubleButtonText": "Double",
+  "@doubleButtonText": {
+    "description": "クードゥブルボタンのテキスト"
+  },
+  "resetButtonText": "Reset",
+  "offerPermissionText": "Please grant permissions for the camera and microphone from the app information.",
+  "offerPermissionDialogTitle": "Permission Denied",
+  "videoPageTitle": "Video player screen",
+  "videoSaveSuccessMessage": "The video has been saved in the gallery successfully!",
+  "settingsTitle": "Settings",
+  "enable": "enable",
+  "disable": "disable",
+  "right": "right",
+  "left": "left",
+  "videoEnableOptionText": "Video enable",
+  "videoAutosaveOptionText": "Video autosave",
+  "videoAutosaveOptionSubText": "The videos will be saved in the gallery.",
+  "videoPreviewSizeOptionText": "Video preview size",
+  "videoPositionOptionText": "Position of the video preview when the screen is horizontal",
+  "doubleButtonOptionText": "Double-touch button",
+  "privacyPolicy": "Privacy Policy"
+}

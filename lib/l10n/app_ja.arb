@@ -1,0 +1,21 @@
+{
+  "startStopButtonText": "スタート/ストップ",
+  "doubleButtonText": "クードゥブル",
+  "resetButtonText": "リセット",
+  "offerPermissionText": "アプリ情報から、カメラとマイクへの権限を付与してください。",
+  "offerPermissionDialogTitle": "権限がありません",
+  "videoPageTitle": "ビデオ再生",
+  "videoSaveSuccessMessage": "動画の保存に成功しました。",
+  "settingsTitle": "設定",
+  "enable": "有効にする",
+  "disable": "無効にする",
+  "right": "右",
+  "left": "左",
+  "videoEnableOptionText": "ビデオ撮影機能",
+  "videoAutosaveOptionText": "ビデオ自動保存機能",
+  "videoAutosaveOptionSubText": "ビデオはギャラリーフォルダに保存されます。",
+  "videoPreviewSizeOptionText": "ビデオプレビュー画面サイズ",
+  "videoPositionOptionText": "スマホを横持ちにした時のビデオプレビュー画面の位置",
+  "doubleButtonOptionText": "クードゥブルボタン",
+  "privacyPolicy": "プライバシーポリシー"
+}
