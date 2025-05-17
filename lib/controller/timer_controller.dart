@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:fencing_scoring_machine/log_helper.dart';
 import 'package:fencing_scoring_machine/model/fencing_scoring_machine.dart';
 import 'package:flutter/material.dart';
 
@@ -22,6 +23,7 @@ class TimerController {
 
   // タイマーを開始する
   void startTimer() {
+    logger.d('タイマーを開始します');
     _machine.isTimerStarting = true;
     _machine.timer = Timer.periodic(
       const Duration(seconds: 1),
@@ -33,12 +35,14 @@ class TimerController {
 
   // タイマーを停止する
   void stopTimer() {
+    logger.d('タイマーを停止します');
     _machine.isTimerStarting = false;
     _machine.timer?.cancel();
   }
 
   // 時間を設定する
   void setTime(int seconds) {
+    logger.d('時間を設定します');
     stopTimer();
     _machine.secondsLeft = seconds;
   }
