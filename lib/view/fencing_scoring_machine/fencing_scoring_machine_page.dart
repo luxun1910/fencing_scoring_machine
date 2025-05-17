@@ -2,7 +2,7 @@ import 'package:fencing_scoring_machine/controller/fencing_scoring_machine_contr
 import 'package:fencing_scoring_machine/model/fencing_scoring_machine.dart';
 import 'package:fencing_scoring_machine/model/settings.dart';
 import 'package:fencing_scoring_machine/view/banner_ad_page.dart';
-import 'package:fencing_scoring_machine/view/fencing_camera_page.dart';
+import 'package:fencing_scoring_machine/view/fencing_scoring_machine/fencing_camera_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -341,7 +341,8 @@ class FencingScoringMachinePage extends StatelessWidget {
                                   child: FittedBox(
                                     child: Text(
                                       minus,
-                                      style: TextStyle(fontSize: buttonTextSize),
+                                      style:
+                                          TextStyle(fontSize: buttonTextSize),
                                     ),
                                   ),
                                 ),

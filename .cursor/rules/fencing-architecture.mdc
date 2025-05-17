@@ -1,0 +1,61 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# フェンシング審判機アプリ - アーキテクチャガイド
+
+## プロジェクト構成
+
+このアプリはフェンシング審判機を模したFlutterアプリで、MVCパターンを採用しています。
+
+- エントリーポイント: [lib/main.dart](mdc:lib/main.dart)
+- 多言語対応: [lib/l10n](mdc:lib/l10n)
+
+## アーキテクチャ
+
+### Model層
+
+データとビジネスロジックを含む:
+
+- [lib/model/fencing_scoring_machine.dart](mdc:lib/model/fencing_scoring_machine.dart) - スコアとタイマーのメインモデル
+- [lib/model/settings.dart](mdc:lib/model/settings.dart) - アプリ設定
+- [lib/model/camera_model.dart](mdc:lib/model/camera_model.dart) - カメラ機能
+- [lib/model/banner_ad_model.dart](mdc:lib/model/banner_ad_model.dart) - 広告管理
+
+### Controller層
+
+責務ごとに分割:
+
+- [lib/controller/fencing_scoring_machine_controller.dart](mdc:lib/controller/fencing_scoring_machine_controller.dart) - ファサードコントローラー
+- [lib/controller/score_controller.dart](mdc:lib/controller/score_controller.dart) - スコア管理
+- [lib/controller/timer_controller.dart](mdc:lib/controller/timer_controller.dart) - タイマー管理
+- [lib/controller/video_controller.dart](mdc:lib/controller/video_controller.dart) - ビデオ録画管理
+
+### View層
+
+UI表示のみを担当:
+
+- [lib/view/fencing_scoring_machine_page.dart](mdc:lib/view/fencing_scoring_machine_page.dart) - メイン画面
+- [lib/view/fencing_video_page.dart](mdc:lib/view/fencing_video_page.dart) - ビデオ再生画面
+- [lib/view/fencing_camera_page.dart](mdc:lib/view/fencing_camera_page.dart) - カメラプレビュー
+- [lib/view/settings_page.dart](mdc:lib/view/settings_page.dart) - 設定画面
+- [lib/view/banner_ad_page.dart](mdc:lib/view/banner_ad_page.dart) - 広告表示
+
+## コーディングルール
+
+1. **責務分離**
+   - 各コントローラーは単一責務のみを持つ
+   - モデルはUIに依存せず、純粋なビジネスロジックのみを含む
+
+2. **状態管理**
+   - ProviderパターンでStatelessWidgetベースのUIを実現
+   - WidgetsBindingObserverはファサードコントローラーでのみ実装
+
+3. **リソース管理**
+   - ProxyProviderのdisposeコールバックでリソース解放
+   - タイマーなどの非同期リソースは確実に解放
+
+4. **命名規則**
+   - 一貫した用語を使用（camera/videoなど混在させない）
+   - メソッド名は動詞で始め、機能を明確に表現

@@ -4,7 +4,7 @@ import 'package:fencing_scoring_machine/model/banner_ad_model.dart';
 import 'package:fencing_scoring_machine/model/camera_model.dart';
 import 'package:fencing_scoring_machine/model/fencing_scoring_machine.dart';
 import 'package:fencing_scoring_machine/model/settings.dart';
-import 'package:fencing_scoring_machine/view/fencing_scoring_machine_page.dart';
+import 'package:fencing_scoring_machine/view/fencing_scoring_machine/fencing_scoring_machine_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -44,6 +44,7 @@ class MyApp extends StatelessWidget {
           update: (_, fencingScoringMachine, settings, cameraModel, __) =>
               FencingScoringMachineController(
                   fencingScoringMachine, cameraModel, settings),
+          dispose: (_, controller) => controller.dispose(),
         ),
       ],
       child: MaterialApp(
