@@ -83,6 +83,8 @@ class FencingVideoPlayerModel extends ChangeNotifier {
   void dispose() {
     _videoPlayerController.dispose();
     chewieController.dispose();
+    _isChewieControllerInitialized = false;
+    notifyListeners();
     super.dispose();
   }
 }

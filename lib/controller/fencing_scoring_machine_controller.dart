@@ -185,9 +185,14 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
         _machine.latestVideoFilePath!.isNotEmpty) {
       _videoPlayerModel.videoFilePath = _machine.latestVideoFilePath!;
       _videoPlayerModel.initControllers();
-      Navigator.of(context).push(MaterialPageRoute(
+      Navigator.of(context)
+          .push(MaterialPageRoute(
         builder: (context) => const FencingVideoPlayerView(),
-      ));
+      ))
+          .then((_) {
+        _videoPlayerModel.chewieController.dispose();
+        _videoPlayerModel.videoPlayerController.dispose();
+      });
     }
   }
 
