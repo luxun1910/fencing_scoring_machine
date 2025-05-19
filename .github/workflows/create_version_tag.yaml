@@ -1,0 +1,23 @@
+name: Create App Version's Git Tag
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create-version-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: "Check app version"
+        run: |
+          echo "v$(yq '.version' pubspec.yaml)" | awk -F'[+]' '{print $1}' > TAG_NAME
+          echo "TAG_NAME=$(cat TAG_NAME)" >> $GITHUB_ENV
+          git ls-remote --tags | grep "$(cat TAG_NAME)$" > TAG_GREP || echo "" > TAG_GREP
+          echo "TAG_GREP=$(cat TAG_GREP)" >> $GITHUB_ENV
+      - name: "Create Git tag if not exist"
+        if: env.TAG_GREP == ''
+        run: |
+          git tag '${{ env.TAG_NAME }}'
+          git push origin '${{ env.TAG_NAME }}'
