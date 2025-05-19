@@ -1,11 +1,11 @@
-import 'package:fencing_scoring_machine/model/settings.dart';
+import 'package:fencing_scoring_machine/model/settings_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
+class SettingsView extends StatelessWidget {
+  const SettingsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class SettingsScreen extends StatelessWidget {
         title: Text(AppLocalizations.of(context)!.settingsTitle),
       ),
       body: SingleChildScrollView(
-        child: Consumer<Settings>(
+        child: Consumer<SettingsModel>(
           builder: (context, settings, child) {
             return Column(
               children: <Widget>[
@@ -172,9 +172,13 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 ListTile(
                   title: Text(
-                      AppLocalizations.of(context)!.privacyPolicy,
-                      style: const TextStyle(color: Colors.blue),),
-                  onTap: () => {launchUrl(Uri.parse("https://luxun1910.github.io/unanimousworks_privacy_policy/fencing_scoring_machine.html"))},
+                    AppLocalizations.of(context)!.privacyPolicy,
+                    style: const TextStyle(color: Colors.blue),
+                  ),
+                  onTap: () => {
+                    launchUrl(Uri.parse(
+                        "https://luxun1910.github.io/unanimousworks_privacy_policy/fencing_scoring_machine.html"))
+                  },
                 ),
               ],
             );

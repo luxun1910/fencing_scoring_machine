@@ -5,7 +5,7 @@ import 'package:gallery_saver/gallery_saver.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
 
-class VideoPlayerModel extends ChangeNotifier {
+class FencingVideoPlayerModel extends ChangeNotifier {
   late VideoPlayerController _videoPlayerController;
   late ChewieController _chewieController;
   final String videoPath;
@@ -13,7 +13,7 @@ class VideoPlayerModel extends ChangeNotifier {
   VideoPlayerController get videoPlayerController => _videoPlayerController;
   ChewieController get chewieController => _chewieController;
 
-  VideoPlayerModel({required this.videoPath}) {
+  FencingVideoPlayerModel({required this.videoPath}) {
     _initControllers();
   }
 
