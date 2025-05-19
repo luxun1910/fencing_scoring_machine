@@ -1,68 +1,49 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:gallery_saver/gallery_saver.dart';
-import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
+import 'package:fencing_scoring_machine/model/video_player_model.dart';
 
-class VideoPlayerScreen extends StatefulWidget {
+class VideoPlayerScreen extends StatelessWidget {
   final String videoPath;
 
   const VideoPlayerScreen({super.key, required this.videoPath});
 
   @override
-  State<VideoPlayerScreen> createState() => _VideoPlayerScreenState();
-}
-
-class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
-  late VideoPlayerController _videoPlayerController;
-  late ChewieController _chewieController;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _videoPlayerController = VideoPlayerController.file(File(widget.videoPath));
-    _chewieController = ChewieController(
-      videoPlayerController: _videoPlayerController,
-      aspectRatio: _videoPlayerController.value.aspectRatio, //アスペクト比
-      autoPlay: false, //自動再生
-      looping: true, //繰り返し再生
-
-      // 以下はオプション（なくてもOK）
-      showControls: true, //コントロールバーの表示（デフォルトではtrue）
-      materialProgressColors: ChewieProgressColors(
-        playedColor: Colors.red, //再生済み部分（左側）の色
-        handleColor: Colors.blue, //再生地点を示すハンドルの色
-        backgroundColor: Colors.grey, //再生前のプログレスバーの色
-        bufferedColor: Colors.lightGreen, //未再生部分（右側）の色
-      ),
-      placeholder: Container(
-        color: Colors.grey, //動画読み込み前の背景色
-      ),
-      autoInitialize: true, //widget呼び出し時に動画を読み込むかどうか
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => VideoPlayerModel(videoPath: videoPath),
+      child: const _VideoPlayerScreenContent(),
     );
   }
+}
 
-  @override
-  void dispose() {
-    _videoPlayerController.dispose();
-    _chewieController.dispose();
-    super.dispose();
-  }
+class _VideoPlayerScreenContent extends StatelessWidget {
+  const _VideoPlayerScreenContent();
 
   @override
   Widget build(BuildContext context) {
+    final model = context.watch<VideoPlayerModel>();
+
     return Scaffold(
       appBar: AppBar(
-        title: Text((AppLocalizations.of(context)!.videoPageTitle)),
+        title: Text(AppLocalizations.of(context)!.videoPageTitle),
         actions: [
           GestureDetector(
             child: const Icon(Icons.save),
-            onTap: () {
+            onTap: () async {
               // タップ時処理
-              saveVideoToGallery(context, widget.videoPath);
+              final result = await model.saveVideoToGallery();
+              if (result && context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                        AppLocalizations.of(context)!.videoSaveSuccessMessage),
+                  ),
+                );
+              }
             },
           ),
           const SizedBox(
@@ -71,23 +52,8 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         ],
       ),
       body: Chewie(
-        controller: _chewieController,
+        controller: model.chewieController,
       ),
     );
-  }
-
-  void saveVideoToGallery(BuildContext context, String videoFilePath) async {
-    await GallerySaver.saveVideo(videoFilePath, albumName: 'fencing_video')
-        .then((result) => {
-              if (result!)
-                {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(AppLocalizations.of(context)!
-                          .videoSaveSuccessMessage),
-                    ),
-                  )
-                }
-            });
   }
 }
