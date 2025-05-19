@@ -4,6 +4,7 @@ import 'package:camera/camera.dart';
 import 'package:fencing_scoring_machine/log_helper.dart';
 import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_camera_model.dart';
 import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_scoring_machine_model.dart';
+import 'package:fencing_scoring_machine/model/fencing_video_player/fencing_video_player_model.dart';
 import 'package:fencing_scoring_machine/model/settings_model.dart';
 import 'package:fencing_scoring_machine/view/fencing_video_player/fencing_video_player_view.dart';
 import 'package:fencing_scoring_machine/view/settings_view.dart';
@@ -11,11 +12,16 @@ import 'package:flutter/material.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 
 class FencingScoringMachineController extends WidgetsBindingObserver {
-  FencingScoringMachineController(FencingScoringMachineModel machine,
-      FencingCameraModel cameraModel, SettingsModel settings) {
+  FencingScoringMachineController(
+      FencingScoringMachineModel machine,
+      FencingCameraModel cameraModel,
+      SettingsModel settings,
+      FencingVideoPlayerModel videoPlayerModel) {
     _machine = machine;
     _settings = settings;
     _cameraModel = cameraModel;
+    _videoPlayerModel = videoPlayerModel;
+
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -24,6 +30,8 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
   late SettingsModel _settings;
 
   late FencingCameraModel _cameraModel;
+
+  late FencingVideoPlayerModel _videoPlayerModel;
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
@@ -164,18 +172,19 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
   }
 
   // 動画再生画面へ遷移する
-  void moveToVideoPlayer(BuildContext context) async {
+  void moveToVideoPlayer(BuildContext context) {
     if (_machine.latestVideoFilePath != null &&
         _machine.latestVideoFilePath!.isNotEmpty) {
+      _videoPlayerModel.videoFilePath = _machine.latestVideoFilePath!;
+      _videoPlayerModel.initControllers();
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => FencingVideoPlayerView(
-            videoFilePath: _machine.latestVideoFilePath!),
+        builder: (context) => const FencingVideoPlayerView(),
       ));
     }
   }
 
   // 設定画面へ遷移する
-  void moveToSettingsPage(BuildContext context) async {
+  void moveToSettingsPage(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => const SettingsView(),
     ));
