@@ -84,7 +84,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
       logger.d("動画撮影終了");
       //カメラを止める＆保存
       var video = await _cameraModel.cameraController.stopVideoRecording();
-      _setCurrentLatestVideoPath(video.path);
+      _setCurrentLatestVideoFilePath(video.path);
     }
   }
 
@@ -142,8 +142,8 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
     }
   }
 
-  // 最新のビデオパスを保存
-  void _setCurrentLatestVideoPath(String xfileVideoPath) {
+  // 最新のビデオファイルパスを保存
+  void _setCurrentLatestVideoFilePath(String xfileVideoPath) {
     if (_settings.isVideoAutoSave) {
       GallerySaver.saveVideo(xfileVideoPath, albumName: 'fencing_video');
     }
@@ -160,16 +160,16 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
     });
 
     // 最新のビデオパスを保存
-    _machine.latestVideoPath = xfileVideoPath;
+    _machine.latestVideoFilePath = xfileVideoPath;
   }
 
   // 動画再生画面へ遷移する
   void moveToVideoPlayer(BuildContext context) async {
-    if (_machine.latestVideoPath != null &&
-        _machine.latestVideoPath!.isNotEmpty) {
+    if (_machine.latestVideoFilePath != null &&
+        _machine.latestVideoFilePath!.isNotEmpty) {
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) =>
-            FencingVideoPlayerView(videoFilePath: _machine.latestVideoPath!),
+        builder: (context) => FencingVideoPlayerView(
+            videoFilePath: _machine.latestVideoFilePath!),
       ));
     }
   }

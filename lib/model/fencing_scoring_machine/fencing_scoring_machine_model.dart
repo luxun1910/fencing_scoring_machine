@@ -57,13 +57,13 @@ class FencingScoringMachineModel extends ChangeNotifier
     notifyListeners();
   }
 
-  // 最新のビデオパス
-  String? _latestVideoPath;
+  // 最新のビデオファイルパス
+  String? _latestVideoFilePath;
 
-  String? get latestVideoPath => _latestVideoPath;
+  String? get latestVideoFilePath => _latestVideoFilePath;
 
-  set latestVideoPath(String? path) {
-    _latestVideoPath = path;
+  set latestVideoFilePath(String? path) {
+    _latestVideoFilePath = path;
     notifyListeners();
   }
 
