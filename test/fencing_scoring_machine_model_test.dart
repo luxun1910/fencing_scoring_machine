@@ -21,8 +21,13 @@ void main() {
     });
 
     test('残り時間が0の状態でそれ以上減らない', () {
+      // 秒数を0にする
+      machine.secondsLeft = 0;
+      expect(machine.remainingTime, "00:00");
+
+      // さらに減らそうとしても変わらない
       machine.minusSeconds();
-      expect(machine.remainingTime, "02:59");
+      expect(machine.remainingTime, "00:00");
     });
 
     test('左側の選手のスコアが1増える', () {
@@ -54,6 +59,52 @@ void main() {
       expect(machine.leftScore, 0);
       expect(machine.rightScore, 0);
       expect(machine.remainingTime, "03:00");
+    });
+
+    test('複数回スコアを増減させた場合に正しく計算されること', () {
+      machine.getLeftScoreUp();
+      machine.getLeftScoreUp();
+      machine.getLeftScoreDown();
+      expect(machine.leftScore, 1);
+
+      machine.getRightScoreUp();
+      machine.getRightScoreUp();
+      machine.getRightScoreUp();
+      machine.getRightScoreDown();
+      expect(machine.rightScore, 2);
+    });
+
+    test('タイマーの初期状態は停止している', () {
+      expect(machine.isTimerStarting, false);
+    });
+
+    test('タイマーの状態を変更できる', () {
+      machine.isTimerStarting = true;
+      expect(machine.isTimerStarting, true);
+
+      machine.isTimerStarting = false;
+      expect(machine.isTimerStarting, false);
+    });
+
+    test('残り時間を直接設定できる', () {
+      machine.secondsLeft = 120;
+      expect(machine.remainingTime, "02:00");
+
+      machine.secondsLeft = 30;
+      expect(machine.remainingTime, "00:30");
+    });
+
+    test('latestVideoFilePathの初期値はnullである', () {
+      expect(machine.latestVideoFilePath, null);
+    });
+
+    test('latestVideoFilePathを設定・取得できる', () {
+      const testPath = "/test/video/path.mp4";
+      machine.latestVideoFilePath = testPath;
+      expect(machine.latestVideoFilePath, testPath);
+
+      machine.latestVideoFilePath = null;
+      expect(machine.latestVideoFilePath, null);
     });
   });
 }
