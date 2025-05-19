@@ -12,7 +12,7 @@ class FencingVideoPlayerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => FencingVideoPlayerModel(videoPath: videoFilePath),
+      create: (_) => FencingVideoPlayerModel(videoFilePath: videoFilePath),
       child: const _FencingVideoPlayerViewContent(),
     );
   }

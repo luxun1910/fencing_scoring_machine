@@ -8,17 +8,17 @@ import 'package:chewie/chewie.dart';
 class FencingVideoPlayerModel extends ChangeNotifier {
   late VideoPlayerController _videoPlayerController;
   late ChewieController _chewieController;
-  final String videoPath;
+  final String videoFilePath;
 
   VideoPlayerController get videoPlayerController => _videoPlayerController;
   ChewieController get chewieController => _chewieController;
 
-  FencingVideoPlayerModel({required this.videoPath}) {
+  FencingVideoPlayerModel({required this.videoFilePath}) {
     _initControllers();
   }
 
   void _initControllers() {
-    _videoPlayerController = VideoPlayerController.file(File(videoPath));
+    _videoPlayerController = VideoPlayerController.file(File(videoFilePath));
     _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController,
       aspectRatio: 16 / 9, // デフォルト値を設定し、後でアスペクト比を更新
@@ -62,7 +62,7 @@ class FencingVideoPlayerModel extends ChangeNotifier {
 
   Future<bool> saveVideoToGallery() async {
     final result = await GallerySaver.saveVideo(
-      videoPath,
+      videoFilePath,
       albumName: 'fencing_video',
     );
     return result ?? false;
