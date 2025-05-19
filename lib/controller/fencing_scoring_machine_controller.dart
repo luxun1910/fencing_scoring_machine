@@ -191,22 +191,6 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
     ));
   }
 
-  // 現在の最新のビデオをギャラリーに保存する
-  void saveVideoToGallery(BuildContext context, String videoFilePath) async {
-    await GallerySaver.saveVideo(videoFilePath,
-            albumName: AppConstants.albumName)
-        .then((result) => {
-              if (result!)
-                {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('動画の保存に成功しました！'),
-                    ),
-                  )
-                }
-            });
-  }
-
   void openChangeTimeDialog(BuildContext context) {
     final formKey = GlobalKey<FormState>();
     var minutes = _machine.secondsLeft ~/ 60;
