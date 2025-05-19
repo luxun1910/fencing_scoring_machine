@@ -12,6 +12,7 @@ import 'package:fencing_scoring_machine/view/settings_view.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 
+/// フェンシング審判機コントローラー
 class FencingScoringMachineController extends WidgetsBindingObserver {
   FencingScoringMachineController(
       FencingScoringMachineModel machine,
@@ -26,12 +27,16 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
   }
 
+  /// フェンシング審判機モデル
   late FencingScoringMachineModel _machine;
 
+  /// 設定モデル
   late SettingsModel _settings;
 
+  /// フェンシングカメラモデル
   late FencingCameraModel _cameraModel;
 
+  /// フェンシングビデオプレイヤーモデル
   late FencingVideoPlayerModel _videoPlayerModel;
 
   @override
@@ -42,7 +47,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
     }
   }
 
-  // タイマーボタンを押下する
+  /// タイマーボタンを押下する
   void pushTimer() async {
     if (!_machine.isTimerStarting) {
       // タイマースタート
@@ -83,11 +88,13 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
     }
   }
 
+  /// タイマー停止
   void _stopTimer() {
     _machine.isTimerStarting = false;
     _machine.timer?.cancel();
   }
 
+  /// 動画撮影停止
   void _stopRecording() async {
     if (_settings.isVideoEnable) {
       logger.d("動画撮影終了");
@@ -97,7 +104,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
     }
   }
 
-  // 左側の選手のスコアを1増やす
+  /// 左側の選手のスコアを1増やす
   void leftScoreUp() {
     _stopTimer();
     _machine.getLeftScoreUp();
@@ -106,7 +113,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
     }
   }
 
-  // 左側の選手のスコアを1減らす
+  /// 左側の選手のスコアを1減らす
   void leftScoreDown() {
     _stopTimer();
     _machine.getLeftScoreDown();
@@ -115,7 +122,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
     }
   }
 
-  // 右側の選手のスコアを1増やす
+  /// 右側の選手のスコアを1増やす
   void rightScoreUp() {
     _stopTimer();
     _machine.getRightScoreUp();
@@ -124,7 +131,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
     }
   }
 
-  // 右側の選手のスコアを1減らす
+  /// 右側の選手のスコアを1減らす
   void rightScoreDown() {
     _stopTimer();
     _machine.getRightScoreDown();
@@ -142,7 +149,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
     }
   }
 
-  // 左右の選手のスコアを0にし、残り時間を3分に戻す
+  /// 左右の選手のスコアを0にし、残り時間を3分に戻す
   void resetAll() {
     _stopTimer();
     _machine.resetAll();
@@ -151,13 +158,13 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
     }
   }
 
-  // 最新のビデオファイルパスを保存
+  /// 最新のビデオファイルパスを保存
   void _setCurrentLatestVideoFilePath(String xfileVideoPath) {
     if (_settings.isVideoAutoSave) {
       GallerySaver.saveVideo(xfileVideoPath, albumName: AppConstants.albumName);
     }
 
-    // 既存のビデオを全て削除
+    /// 既存のビデオを全て削除
     var xfileVideoDir = File(xfileVideoPath).parent;
     xfileVideoDir
         .listSync()
@@ -172,7 +179,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
     _machine.latestVideoFilePath = xfileVideoPath;
   }
 
-  // 動画再生画面へ遷移する
+  /// ビデオ再生画面へ遷移する
   void moveToVideoPlayer(BuildContext context) {
     if (_machine.latestVideoFilePath != null &&
         _machine.latestVideoFilePath!.isNotEmpty) {
@@ -184,13 +191,14 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
     }
   }
 
-  // 設定画面へ遷移する
+  /// 設定画面へ遷移する
   void moveToSettingsPage(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => const SettingsView(),
     ));
   }
 
+  /// タイマー設定画面を開く
   void openChangeTimeDialog(BuildContext context) {
     final formKey = GlobalKey<FormState>();
     var minutes = _machine.secondsLeft ~/ 60;

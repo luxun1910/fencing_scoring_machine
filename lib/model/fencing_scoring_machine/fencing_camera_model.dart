@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
+/// フェンシングカメラモデル
 class FencingCameraModel extends ChangeNotifier with WidgetsBindingObserver {
   FencingCameraModel(CameraDescription camera) {
     camera = camera;
@@ -46,23 +47,31 @@ class FencingCameraModel extends ChangeNotifier with WidgetsBindingObserver {
     }
   }
 
+  /// ズームレベル設定
   Future<void> setZoomLevel() async {
     _maxZoomLevel = await cameraController.getMaxZoomLevel();
     _minZoomLevel = await cameraController.getMinZoomLevel();
     notifyListeners();
   }
 
-  // カメラディスクリプション
+  /// カメラディスクリプション
   late CameraDescription camera;
 
+  /// カメラコントローラー
   late CameraController cameraController;
+
+  /// カメラコントローラー初期化フューチャー
   late Future<void> initializeControllerFuture;
 
+  /// 最小ズームレベル
   double _minZoomLevel = 0;
 
+  /// 最小ズームレベルゲッター
   double get minZoomLevel => _minZoomLevel;
 
+  /// 最大ズームレベル
   double _maxZoomLevel = 0;
 
+  /// 最大ズームレベルゲッター
   double get maxZoomLevel => _maxZoomLevel;
 }

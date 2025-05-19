@@ -5,6 +5,7 @@ import 'package:chewie/chewie.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
+/// フェンシングビデオ再生画面
 class FencingVideoPlayerView extends StatelessWidget {
   const FencingVideoPlayerView({super.key});
 

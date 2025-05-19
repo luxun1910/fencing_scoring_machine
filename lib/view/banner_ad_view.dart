@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
+/// バナー広告表示画面
 class BannerAdView extends StatelessWidget {
   const BannerAdView({super.key});
 

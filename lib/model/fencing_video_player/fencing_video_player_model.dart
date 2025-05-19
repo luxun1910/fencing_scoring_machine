@@ -6,32 +6,42 @@ import 'package:flutter/material.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:video_player/video_player.dart';
 
-// フェンシングビデオ再生ページモデル
+/// フェンシングビデオ再生ページモデル
 class FencingVideoPlayerModel extends ChangeNotifier {
-  // ビデオファイルパス
+  /// ビデオファイルパス
   String? _videoFilePath;
 
+  /// ビデオファイルパスゲッター
   String? get videoFilePath => _videoFilePath;
 
+  /// Chewieビデオコントローラー
   late ChewieController chewieController;
+
+  /// Chewieビデオコントローラー初期化フラグ
   bool _isChewieControllerInitialized = false;
 
+  /// Chewieビデオコントローラー初期化フラグゲッター
   bool get isChewieControllerInitialized => _isChewieControllerInitialized;
 
+  /// ビデオコントローラー
   late VideoPlayerController _videoPlayerController;
 
+  /// ビデオコントローラーゲッター
   VideoPlayerController get videoPlayerController => _videoPlayerController;
 
+  /// ビデオコントローラーセッター
   set videoPlayerController(VideoPlayerController videoPlayerController) {
     _videoPlayerController = videoPlayerController;
     notifyListeners();
   }
 
+  /// ビデオファイルパスセッター
   set videoFilePath(String? path) {
     _videoFilePath = path;
     notifyListeners();
   }
 
+  /// コントローラー初期化
   void initControllers() {
     _isChewieControllerInitialized = false;
     _videoPlayerController = VideoPlayerController.file(File(videoFilePath!));
@@ -60,6 +70,7 @@ class FencingVideoPlayerModel extends ChangeNotifier {
     });
   }
 
+  /// ビデオをローカルに保存
   Future<bool> saveVideoToGallery() async {
     final result = await GallerySaver.saveVideo(
       _videoFilePath!,

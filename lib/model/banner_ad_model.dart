@@ -4,6 +4,7 @@ import 'package:fencing_scoring_machine/log_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
+/// バナー広告モデル
 class BannerAdModel extends ChangeNotifier with WidgetsBindingObserver {
   BannerAdModel() {
     bannerAd = BannerAd(
@@ -22,8 +23,10 @@ class BannerAdModel extends ChangeNotifier with WidgetsBindingObserver {
     super.dispose();
   }
 
+  /// バナー広告
   BannerAd? bannerAd;
 
+  /// バナー広告ID
   String get bannerAdUnitId {
     var bunnerAdUnitIDForAndroid =
         const String.fromEnvironment('bunnerAdUnitIDForAndroid');
@@ -39,6 +42,7 @@ class BannerAdModel extends ChangeNotifier with WidgetsBindingObserver {
     }
   }
 
+  /// バナー広告読み込み
   void loadBannerAd() async {
     await bannerAd?.load();
     logger.i("広告読み込み完了");
