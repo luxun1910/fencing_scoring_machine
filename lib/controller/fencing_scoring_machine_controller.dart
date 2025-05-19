@@ -10,7 +10,7 @@ import 'package:fencing_scoring_machine/model/settings_model.dart';
 import 'package:fencing_scoring_machine/view/fencing_video_player/fencing_video_player_view.dart';
 import 'package:fencing_scoring_machine/view/settings_view.dart';
 import 'package:flutter/material.dart';
-import 'package:gallery_saver/gallery_saver.dart';
+import 'package:gallery_saver_plus/gallery_saver.dart';
 
 /// フェンシング審判機コントローラー
 class FencingScoringMachineController extends WidgetsBindingObserver {

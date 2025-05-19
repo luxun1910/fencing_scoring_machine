@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:chewie/chewie.dart';
 import 'package:fencing_scoring_machine/app_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:gallery_saver/gallery_saver.dart';
+import 'package:gallery_saver_plus/gallery_saver.dart';
 import 'package:video_player/video_player.dart';
 
 /// フェンシングビデオ再生ページモデル

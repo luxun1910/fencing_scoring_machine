@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -41,7 +41,6 @@ dependencies:
   image_gallery_saver: ^2.0.3
   video_player: ^2.8.1
   chewie: ^1.7.1
-  gallery_saver: ^2.3.2
   image_picker: ^1.0.4
   google_mobile_ads: ^3.1.0
   logger: ^2.0.2+1
@@ -62,6 +61,7 @@ dependencies:
     sdk: flutter
   intl: any
   url_launcher: ^6.3.0
+  gallery_saver_plus: ^3.2.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -69,9 +69,9 @@ dependencies:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: 'assets/images/icon.png'
-  adaptive_icon_background: '#ffffff'
-  adaptive_icon_foreground: 'assets/images/whiteborder_icon_adaptive_foreground.png'
+  image_path: "assets/images/icon.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/images/whiteborder_icon_adaptive_foreground.png"
   remove_alpha_ios: true
 
 # The following section is specific to Flutter packages.
