@@ -7,14 +7,14 @@ import 'package:provider/provider.dart';
 import 'package:fencing_scoring_machine/model/fencing_video_player/fencing_video_player_model.dart';
 
 class FencingVideoPlayerView extends StatelessWidget {
-  final String videoPath;
+  final String videoFilePath;
 
-  const FencingVideoPlayerView({super.key, required this.videoPath});
+  const FencingVideoPlayerView({super.key, required this.videoFilePath});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => FencingVideoPlayerModel(videoPath: videoPath),
+      create: (_) => FencingVideoPlayerModel(videoPath: videoFilePath),
       child: const _FencingVideoPlayerViewContent(),
     );
   }

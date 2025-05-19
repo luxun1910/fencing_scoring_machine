@@ -169,7 +169,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
         _machine.latestVideoPath!.isNotEmpty) {
       Navigator.of(context).push(MaterialPageRoute(
         builder: (context) =>
-            FencingVideoPlayerView(videoPath: _machine.latestVideoPath!),
+            FencingVideoPlayerView(videoFilePath: _machine.latestVideoPath!),
       ));
     }
   }
