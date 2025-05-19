@@ -1,19 +1,19 @@
 import 'package:fencing_scoring_machine/controller/fencing_scoring_machine_controller.dart';
-import 'package:fencing_scoring_machine/model/fencing_scoring_machine.dart';
-import 'package:fencing_scoring_machine/model/settings.dart';
-import 'package:fencing_scoring_machine/view/banner_ad_page.dart';
-import 'package:fencing_scoring_machine/view/fencing_camera_page.dart';
+import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_scoring_machine_model.dart';
+import 'package:fencing_scoring_machine/model/settings_model.dart';
+import 'package:fencing_scoring_machine/view/banner_ad_view.dart';
+import 'package:fencing_scoring_machine/view/fencing_scoring_machine/fencing_camera_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class FencingScoringMachinePage extends StatelessWidget {
-  const FencingScoringMachinePage({super.key});
+class FencingScoringMachineView extends StatelessWidget {
+  const FencingScoringMachineView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final machine = context.watch<FencingScoringMachine>();
-    final settings = context.watch<Settings>();
+    final machine = context.watch<FencingScoringMachineModel>();
+    final settings = context.watch<SettingsModel>();
     final width = MediaQuery.of(context).size.width -
         MediaQuery.of(context).padding.left -
         MediaQuery.of(context).padding.right;
@@ -52,7 +52,7 @@ class FencingScoringMachinePage extends StatelessWidget {
                       orientation == Orientation.portrait)
                     Expanded(
                         flex: settings.videoPreviewSize,
-                        child: const FencingCameraPage()),
+                        child: const FencingCameraView()),
                   Expanded(
                     flex: 2,
                     child: Row(
@@ -66,7 +66,7 @@ class FencingScoringMachinePage extends StatelessWidget {
                             orientation == Orientation.landscape)
                           Expanded(
                               flex: settings.videoPreviewSize,
-                              child: const FencingCameraPage()),
+                              child: const FencingCameraView()),
                         // Left Column
                         Expanded(
                           child: Column(
@@ -341,7 +341,8 @@ class FencingScoringMachinePage extends StatelessWidget {
                                   child: FittedBox(
                                     child: Text(
                                       minus,
-                                      style: TextStyle(fontSize: buttonTextSize),
+                                      style:
+                                          TextStyle(fontSize: buttonTextSize),
                                     ),
                                   ),
                                 ),
@@ -355,7 +356,7 @@ class FencingScoringMachinePage extends StatelessWidget {
                             orientation == Orientation.landscape)
                           Expanded(
                               flex: settings.videoPreviewSize,
-                              child: const FencingCameraPage()),
+                              child: const FencingCameraView()),
                       ],
                     ),
                   ),
@@ -375,7 +376,7 @@ class FencingScoringMachinePage extends StatelessWidget {
                 },
                 child: const Icon(Icons.settings),
               ),
-        bottomNavigationBar: const BannerAdPage(),
+        bottomNavigationBar: const BannerAdView(),
       ),
     );
   }

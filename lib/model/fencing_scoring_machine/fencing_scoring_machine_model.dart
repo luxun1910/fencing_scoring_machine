@@ -2,8 +2,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 // フェンシング審判機モデル
-class FencingScoringMachine extends ChangeNotifier with WidgetsBindingObserver {
-  FencingScoringMachine() {
+class FencingScoringMachineModel extends ChangeNotifier
+    with WidgetsBindingObserver {
+  FencingScoringMachineModel() {
     WidgetsBinding.instance.addObserver(this);
     notifyListeners();
   }

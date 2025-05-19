@@ -2,28 +2,28 @@ import 'dart:async';
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:fencing_scoring_machine/log_helper.dart';
-import 'package:fencing_scoring_machine/model/camera_model.dart';
-import 'package:fencing_scoring_machine/model/fencing_scoring_machine.dart';
-import 'package:fencing_scoring_machine/model/settings.dart';
-import 'package:fencing_scoring_machine/view/fencing_video_page.dart';
-import 'package:fencing_scoring_machine/view/settings_page.dart';
+import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_camera_model.dart';
+import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_scoring_machine_model.dart';
+import 'package:fencing_scoring_machine/model/settings_model.dart';
+import 'package:fencing_scoring_machine/view/fencing_video_player/fencing_video_player_view.dart';
+import 'package:fencing_scoring_machine/view/settings_view.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 
 class FencingScoringMachineController extends WidgetsBindingObserver {
-  FencingScoringMachineController(FencingScoringMachine machine,
-      CameraModel cameraModel, Settings settings) {
+  FencingScoringMachineController(FencingScoringMachineModel machine,
+      FencingCameraModel cameraModel, SettingsModel settings) {
     _machine = machine;
     _settings = settings;
     _cameraModel = cameraModel;
     WidgetsBinding.instance.addObserver(this);
   }
 
-  late FencingScoringMachine _machine;
+  late FencingScoringMachineModel _machine;
 
-  late Settings _settings;
+  late SettingsModel _settings;
 
-  late CameraModel _cameraModel;
+  late FencingCameraModel _cameraModel;
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
@@ -169,7 +169,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
         _machine.latestVideoPath!.isNotEmpty) {
       Navigator.of(context).push(MaterialPageRoute(
         builder: (context) =>
-            VideoPlayerScreen(videoPath: _machine.latestVideoPath!),
+            FencingVideoPlayerView(videoFilePath: _machine.latestVideoPath!),
       ));
     }
   }
@@ -177,7 +177,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
   // 設定画面へ遷移する
   void moveToSettingsPage(BuildContext context) async {
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const SettingsScreen(),
+      builder: (context) => const SettingsView(),
     ));
   }
 

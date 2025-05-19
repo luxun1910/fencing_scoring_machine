@@ -1,10 +1,11 @@
 import 'package:camera/camera.dart';
 import 'package:fencing_scoring_machine/controller/fencing_scoring_machine_controller.dart';
+import 'package:fencing_scoring_machine/controller/settings_controller.dart';
 import 'package:fencing_scoring_machine/model/banner_ad_model.dart';
-import 'package:fencing_scoring_machine/model/camera_model.dart';
-import 'package:fencing_scoring_machine/model/fencing_scoring_machine.dart';
-import 'package:fencing_scoring_machine/model/settings.dart';
-import 'package:fencing_scoring_machine/view/fencing_scoring_machine_page.dart';
+import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_camera_model.dart';
+import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_scoring_machine_model.dart';
+import 'package:fencing_scoring_machine/model/settings_model.dart';
+import 'package:fencing_scoring_machine/view/fencing_scoring_machine/fencing_scoring_machine_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -34,13 +35,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<FencingScoringMachine>(
-            create: (_) => FencingScoringMachine()),
-        ChangeNotifierProvider<CameraModel>(create: (_) => CameraModel(camera)),
+        ChangeNotifierProvider<FencingScoringMachineModel>(
+            create: (_) => FencingScoringMachineModel()),
+        ChangeNotifierProvider<FencingCameraModel>(
+            create: (_) => FencingCameraModel(camera)),
         ChangeNotifierProvider<BannerAdModel>(create: (_) => BannerAdModel()),
-        ChangeNotifierProvider<Settings>(create: (_) => Settings()),
-        ProxyProvider3<FencingScoringMachine, Settings, CameraModel,
-            FencingScoringMachineController>(
+        ChangeNotifierProvider<SettingsModel>(create: (_) => SettingsModel()),
+        ProxyProvider<SettingsModel, SettingsController>(
+          update: (_, settingsModel, __) => SettingsController(settingsModel),
+        ),
+        ProxyProvider3<FencingScoringMachineModel, SettingsModel,
+            FencingCameraModel, FencingScoringMachineController>(
           update: (_, fencingScoringMachine, settings, cameraModel, __) =>
               FencingScoringMachineController(
                   fencingScoringMachine, cameraModel, settings),
@@ -70,7 +75,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData.light(),
         darkTheme: ThemeData.dark(),
         themeMode: ThemeMode.system,
-        home: const FencingScoringMachinePage(),
+        home: const FencingScoringMachineView(),
       ),
     );
   }

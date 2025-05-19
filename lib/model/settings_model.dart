@@ -17,8 +17,8 @@ enum Position {
   }
 }
 
-class Settings extends ChangeNotifier {
-  Settings() {
+class SettingsModel extends ChangeNotifier {
+  SettingsModel() {
     _loadSelectedOption();
   }
 
