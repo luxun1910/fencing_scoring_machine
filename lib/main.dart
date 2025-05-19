@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:fencing_scoring_machine/controller/fencing_scoring_machine_controller.dart';
+import 'package:fencing_scoring_machine/controller/settings_controller.dart';
 import 'package:fencing_scoring_machine/model/banner_ad_model.dart';
 import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_camera_model.dart';
 import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_scoring_machine_model.dart';
@@ -40,6 +41,9 @@ class MyApp extends StatelessWidget {
             create: (_) => FencingCameraModel(camera)),
         ChangeNotifierProvider<BannerAdModel>(create: (_) => BannerAdModel()),
         ChangeNotifierProvider<SettingsModel>(create: (_) => SettingsModel()),
+        ProxyProvider<SettingsModel, SettingsController>(
+          update: (_, settingsModel, __) => SettingsController(settingsModel),
+        ),
         ProxyProvider3<FencingScoringMachineModel, SettingsModel,
             FencingCameraModel, FencingScoringMachineController>(
           update: (_, fencingScoringMachine, settings, cameraModel, __) =>
