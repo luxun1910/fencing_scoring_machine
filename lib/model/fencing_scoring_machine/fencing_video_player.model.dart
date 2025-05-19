@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:fencing_scoring_machine/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 
@@ -17,7 +18,7 @@ class FencingVideoPlayerModel extends ChangeNotifier {
   Future<bool> saveVideoToGallery() async {
     final result = await GallerySaver.saveVideo(
       _videoFilePath!,
-      albumName: 'fencing_video',
+      albumName: AppConstants.albumName,
     );
     return result ?? false;
   }

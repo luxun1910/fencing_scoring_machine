@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:camera/camera.dart';
+import 'package:fencing_scoring_machine/app_constants.dart';
 import 'package:fencing_scoring_machine/log_helper.dart';
 import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_camera_model.dart';
 import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_scoring_machine_model.dart';
@@ -153,7 +154,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
   // 最新のビデオファイルパスを保存
   void _setCurrentLatestVideoFilePath(String xfileVideoPath) {
     if (_settings.isVideoAutoSave) {
-      GallerySaver.saveVideo(xfileVideoPath, albumName: 'fencing_video');
+      GallerySaver.saveVideo(xfileVideoPath, albumName: AppConstants.albumName);
     }
 
     // 既存のビデオを全て削除
@@ -192,7 +193,8 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
 
   // 現在の最新のビデオをギャラリーに保存する
   void saveVideoToGallery(BuildContext context, String videoFilePath) async {
-    await GallerySaver.saveVideo(videoFilePath, albumName: 'fencing_video')
+    await GallerySaver.saveVideo(videoFilePath,
+            albumName: AppConstants.albumName)
         .then((result) => {
               if (result!)
                 {
