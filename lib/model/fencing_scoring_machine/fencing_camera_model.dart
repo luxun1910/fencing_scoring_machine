@@ -31,6 +31,9 @@ class FencingCameraModel extends ChangeNotifier with WidgetsBindingObserver {
 
     if (state == AppLifecycleState.paused) {
       cameraController.dispose();
+      // スライダーの位置を初期設定に戻す
+      _sliderValue = 0.1;
+      notifyListeners();
     }
 
     if (state == AppLifecycleState.resumed) {
@@ -54,6 +57,16 @@ class FencingCameraModel extends ChangeNotifier with WidgetsBindingObserver {
     notifyListeners();
   }
 
+  /// スライダー値を更新
+  void updateSliderValue(double value) {
+    _sliderValue = value;
+    final valueForZoom = value * 10;
+    if (valueForZoom <= _maxZoomLevel && valueForZoom >= _minZoomLevel) {
+      cameraController.setZoomLevel(valueForZoom);
+    }
+    notifyListeners();
+  }
+
   /// カメラディスクリプション
   late CameraDescription camera;
 
@@ -74,4 +87,10 @@ class FencingCameraModel extends ChangeNotifier with WidgetsBindingObserver {
 
   /// 最大ズームレベルゲッター
   double get maxZoomLevel => _maxZoomLevel;
+
+  /// スライダー値
+  double _sliderValue = 0.1;
+
+  /// スライダー値ゲッター
+  double get sliderValue => _sliderValue;
 }

@@ -69,51 +69,32 @@ class FencingCameraView extends StatelessWidget {
   }
 }
 
-class CameraSlider extends StatefulWidget {
+class CameraSlider extends StatelessWidget {
   const CameraSlider({super.key});
 
   @override
-  CameraSliderState createState() => CameraSliderState();
-}
-
-class CameraSliderState extends State<CameraSlider> {
-  double sliderValue = 0.1;
-
-  late Future<void> _future;
-
-  @override
-  void initState() {
-    _future = context.read<FencingCameraModel>().setZoomLevel();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final camera = context.read<FencingCameraModel>();
-
-    return FutureBuilder(
-        future: _future,
-        builder: (context, snapshot) {
-          if (camera.maxZoomLevel > 0 && camera.minZoomLevel > 0) {
-            return Slider(
-              activeColor: Colors.red,
-              value: sliderValue,
-              min: camera.minZoomLevel / 10,
-              max: camera.maxZoomLevel / 10,
-              onChanged: (value) {
-                var valueForZoom = value * 10;
-                if (valueForZoom <= camera.maxZoomLevel &&
-                    valueForZoom >= camera.minZoomLevel) {
-                  camera.cameraController.setZoomLevel(valueForZoom);
-                }
-                setState(() {
-                  sliderValue = value;
-                });
-              },
-            );
-          } else {
-            return Container();
-          }
-        });
+    return Consumer<FencingCameraModel>(
+      builder: (context, camera, child) {
+        return FutureBuilder<void>(
+          future: camera.setZoomLevel(),
+          builder: (context, snapshot) {
+            if (camera.maxZoomLevel > 0 && camera.minZoomLevel > 0) {
+              return Slider(
+                activeColor: Colors.red,
+                value: camera.sliderValue,
+                min: camera.minZoomLevel / 10,
+                max: camera.maxZoomLevel / 10,
+                onChanged: (value) {
+                  camera.updateSliderValue(value);
+                },
+              );
+            } else {
+              return Container();
+            }
+          },
+        );
+      },
+    );
   }
 }
