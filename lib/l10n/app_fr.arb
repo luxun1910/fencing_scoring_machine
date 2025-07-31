@@ -20,5 +20,11 @@
   "doubleButtonOptionText": "Bouton Coup double",
   "privacyPolicy": "Politique de confidentialité",
   "close": "Fermer",
-  "matchNumberCountOptionText": "Compteur de numéro de match"
+  "matchNumberCountOptionText": "Compteur de numéro de match",
+  "change": "Changer",
+  "timerSettingTitle": "Réglage du minuteur",
+  "matchNumberSettingTitle": "Réglage du numéro de match",
+  "selectNumberHint": "Sélectionner un nombre",
+  "selectNumber": "Veuillez sélectionner un nombre.",
+  "matchNumberChangedMessage": "Le numéro de match a été changé!"
 }

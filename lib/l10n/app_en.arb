@@ -83,5 +83,29 @@
   "matchNumberCountOptionText": "Match number counter",
   "@matchNumberCountOptionText": {
     "description": "Match number counter option text"
+  },
+  "change": "Change",
+  "@change": {
+    "description": "Change button text"
+  },
+  "timerSettingTitle": "Timer Setting",
+  "@timerSettingTitle": {
+    "description": "Timer setting title"
+  },
+  "matchNumberSettingTitle": "Match Number Setting",
+  "@matchNumberSettingTitle": {
+    "description": "Match number setting title"
+  },
+  "selectNumberHint": "Select Number",
+  "@selectNumberHint": {
+    "description": "Select number hint text"
+  },
+  "selectNumber": "Please select a number.",
+  "@selectNumber": {
+    "description": "Select number text"
+  },
+  "matchNumberChangedMessage": "The match number has changed!",
+  "@matchNumberChangedMessage": {
+    "description": "Match number changed message"
   }
 }

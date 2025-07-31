@@ -20,5 +20,11 @@
   "doubleButtonOptionText": "クードゥブルボタン",
   "privacyPolicy": "プライバシーポリシー",
   "close": "閉じる",
-  "matchNumberCountOptionText": "セット数カウント"
+  "matchNumberCountOptionText": "セット数カウント",
+  "change": "変更",
+  "timerSettingTitle": "残り時間設定",
+  "matchNumberSettingTitle": "セット数設定",
+  "selectNumberHint": "数字を選択",
+  "selectNumber": "数字を選択してください",
+  "matchNumberChangedMessage": "セット数が変更されました"
 }

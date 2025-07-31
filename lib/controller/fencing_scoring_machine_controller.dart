@@ -227,7 +227,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Timer Setting"),
+          title: Text(AppLocalizations.of(context)!.timerSettingTitle),
           content: Form(
             key: formKey,
             child: Column(
@@ -239,7 +239,8 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
                     Flexible(
                       child: DropdownButtonFormField<int>(
                         value: dropdownValue1,
-                        hint: const Text('数字を選択'),
+                        hint: Text(
+                            AppLocalizations.of(context)!.selectNumberHint),
                         items: List<int>.generate(4, (i) => i).map((int value) {
                           return DropdownMenuItem<int>(
                             value: value,
@@ -251,7 +252,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
                         },
                         validator: (value) {
                           if (value == null) {
-                            return '数字を選択してください';
+                            return AppLocalizations.of(context)!.selectNumber;
                           }
                           return null;
                         },
@@ -260,7 +261,8 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
                     Flexible(
                       child: DropdownButtonFormField<int>(
                         value: dropdownValue2,
-                        hint: const Text('数字を選択'),
+                        hint: Text(
+                            AppLocalizations.of(context)!.selectNumberHint),
                         items:
                             List<int>.generate(60, (i) => i).map((int value) {
                           return DropdownMenuItem<int>(
@@ -273,7 +275,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
                         },
                         validator: (value) {
                           if (value == null) {
-                            return '数字を選択してください';
+                            return AppLocalizations.of(context)!.selectNumber;
                           }
                           return null;
                         },
@@ -287,13 +289,14 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
                       _machine.secondsLeft =
                           dropdownValue1 * 60 + dropdownValue2;
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            content: Text('The remaining time has changed!')),
+                        SnackBar(
+                            content: Text(AppLocalizations.of(context)!
+                                .matchNumberChangedMessage)),
                       );
                       Navigator.of(context).pop();
                     }
                   },
-                  child: const Text('Change'),
+                  child: Text(AppLocalizations.of(context)!.change),
                 ),
               ],
             ),
@@ -319,7 +322,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Match Number Setting"),
+          title: Text(AppLocalizations.of(context)!.matchNumberSettingTitle),
           content: Form(
             key: formKey,
             child: Column(
@@ -331,7 +334,8 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
                     Flexible(
                       child: DropdownButtonFormField<int>(
                         value: _machine.matchNumber,
-                        hint: const Text('数字を選択'),
+                        hint: Text(
+                            AppLocalizations.of(context)!.selectNumberHint),
                         items: List<int>.generate(9, (i) => i + 1)
                             .map((int value) {
                           return DropdownMenuItem<int>(
@@ -344,7 +348,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
                         },
                         validator: (value) {
                           if (value == null) {
-                            return '数字を選択してください';
+                            return AppLocalizations.of(context)!.selectNumber;
                           }
                           return null;
                         },
@@ -357,13 +361,14 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
                     if (formKey.currentState!.validate()) {
                       _machine.matchNumber = _machine.matchNumber;
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            content: Text('The match number has changed!')),
+                        SnackBar(
+                            content: Text(AppLocalizations.of(context)!
+                                .matchNumberChangedMessage)),
                       );
                       Navigator.of(context).pop();
                     }
                   },
-                  child: const Text('Change'),
+                  child: Text(AppLocalizations.of(context)!.change),
                 ),
               ],
             ),
