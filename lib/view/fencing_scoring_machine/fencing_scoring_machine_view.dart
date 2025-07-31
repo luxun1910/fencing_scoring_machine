@@ -8,7 +8,7 @@ import 'package:fencing_scoring_machine/view/fencing_scoring_machine/control_pan
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-/// フェンシング審判機画面
+/// Fencing scoring machine screen
 class FencingScoringMachineView extends StatelessWidget {
   const FencingScoringMachineView({super.key});
 

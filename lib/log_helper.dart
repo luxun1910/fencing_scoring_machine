@@ -10,7 +10,7 @@ class LogHelper {
     return _instance;
   }
 
-  // シングルトンにするため、コンストラクタをprivateにする
+  // Make constructor private for singleton pattern
   LogHelper._internal();
 
   static Logger get instance => _instance.logger;

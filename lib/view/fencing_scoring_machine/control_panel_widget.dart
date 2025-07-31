@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-/// コントロールパネルウィジェット
+/// Control panel widget
 class ControlPanelWidget extends StatelessWidget {
   final double height;
   final double width;

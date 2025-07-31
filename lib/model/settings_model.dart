@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// ビデオプレビュー位置
+/// Video preview position
 enum Position {
   left(0),
   right(1);
@@ -12,61 +12,61 @@ enum Position {
   @override
   String toString() => position.toString();
 
-  /// 数値からビデオプレビュー位置を取得する
+  /// Get video preview position from number
   factory Position.fromNum(int num) {
     return values.firstWhere((e) => e.position == num);
   }
 }
 
-/// 設定画面モデル
+/// Settings screen model
 class SettingsModel extends ChangeNotifier {
   SettingsModel() {
     _loadSelectedOption();
   }
 
-  /// ビデオオートセーブ
+  /// Video auto save
   late bool _isVideoAutoSave = false;
 
-  /// ビデオオートセーブゲッター
+  /// Video auto-save getter
   bool get isVideoAutoSave => _isVideoAutoSave;
 
-  /// ビデオオートセーブセッター
+  /// Video auto-save setter
   set isVideoAutoSave(bool isVideoAutoSave) {
     _isVideoAutoSave = isVideoAutoSave;
     notifyListeners();
   }
 
-  /// ビデオプレビューサイズ
+  /// Video preview size
   late int _videoPreviewSize = 2;
 
-  /// ビデオプレビューサイズゲッター
+  /// Video preview size getter
   int get videoPreviewSize => _videoPreviewSize;
 
-  /// ビデオプレビューサイズセッター
+  /// Video preview size setter
   set videoPreviewSize(int size) {
     _videoPreviewSize = size;
     notifyListeners();
   }
 
-  /// ビデオオンオフ
+  /// Video on/off
   late bool _isVideoEnable = true;
 
-  /// ビデオオンオフゲッター
+  /// Video on/off getter
   bool get isVideoEnable => _isVideoEnable;
 
-  /// ビデオオンオフセッター
+  /// Video on/off setter
   set isVideoEnable(bool isEnable) {
     _isVideoEnable = isEnable;
     notifyListeners();
   }
 
-  /// ドゥーブルボタンオンオフ
+  /// Double button on/off
   late bool _isDoubleButtonEnable = true;
 
-  /// ドゥーブルボタンオンオフゲッター
+  /// Double button on/off getter
   bool get isDoubleButtonEnable => _isDoubleButtonEnable;
 
-  /// ドゥーブルボタンオンオフセッター
+  /// Double button on/off setter
   set isDoubleButtonEnable(bool isEnable) {
     _isDoubleButtonEnable = isEnable;
     notifyListeners();
@@ -84,7 +84,7 @@ class SettingsModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// 横持ち時のビデオプレビュー位置
+  /// Video preview position when landscape
   late Position _videoPreviewPositionWhenLandscape = Position.right;
 
   Position get videoPreviewPositionWhenLandscape =>
@@ -95,7 +95,7 @@ class SettingsModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// オプション読み込み
+  /// Load options
   Future<void> _loadSelectedOption() async {
     final prefs = await SharedPreferences.getInstance();
 
@@ -110,7 +110,7 @@ class SettingsModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// ビデオオートセーブオンオフ設定
+  /// Video auto save on/off setting
   Future<void> setIsVideoAutoSave(bool option) async {
     _isVideoAutoSave = option;
     final prefs = await SharedPreferences.getInstance();
@@ -120,7 +120,7 @@ class SettingsModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// ビデオプレビューサイズ設定
+  /// Video preview size setting
   Future<void> setCameraPreviewSize(int size) async {
     _videoPreviewSize = size;
     final prefs = await SharedPreferences.getInstance();
@@ -130,7 +130,7 @@ class SettingsModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// ビデオオンオフ設定
+  /// Video on/off setting
   Future<void> setVideoEnable(bool enable) async {
     _isVideoEnable = enable;
     final prefs = await SharedPreferences.getInstance();
@@ -140,7 +140,7 @@ class SettingsModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// ドゥーブルボタンオンオフ設定
+  /// Double button on/off setting
   Future<void> setDoubleButtonEnable(bool enable) async {
     _isDoubleButtonEnable = enable;
     final prefs = await SharedPreferences.getInstance();
@@ -160,7 +160,7 @@ class SettingsModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// 横持ち時のビデオプレビュー位置設定
+  /// Video preview position setting when landscape
   Future<void> setVideoPreviewPositionWhenLandscape(Position location) async {
     _videoPreviewPositionWhenLandscape = location;
     final prefs = await SharedPreferences.getInstance();

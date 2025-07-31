@@ -6,47 +6,47 @@ import 'package:flutter/material.dart';
 import 'package:gallery_saver_plus/gallery_saver.dart';
 import 'package:video_player/video_player.dart';
 
-/// フェンシングビデオ再生ページモデル
+/// Fencing video player page model
 class FencingVideoPlayerModel extends ChangeNotifier {
-  /// ビデオファイルパス
+  /// Video file path
   String? _videoFilePath;
 
-  /// ビデオファイルパスゲッター
+  /// Video file path getter
   String? get videoFilePath => _videoFilePath;
 
-  /// Chewieビデオコントローラー
+  /// Chewie video controller
   late ChewieController chewieController;
 
-  /// Chewieビデオコントローラー初期化フラグ
+  /// Chewie video controller initialization flag
   bool _isChewieControllerInitialized = false;
 
-  /// Chewieビデオコントローラー初期化フラグゲッター
+  /// Chewie video controller initialization flag getter
   bool get isChewieControllerInitialized => _isChewieControllerInitialized;
 
-  /// ビデオコントローラー
+  /// Video controller
   late VideoPlayerController _videoPlayerController;
 
-  /// ビデオコントローラーゲッター
+  /// Video controller getter
   VideoPlayerController get videoPlayerController => _videoPlayerController;
 
-  /// ビデオコントローラーセッター
+  /// Video controller setter
   set videoPlayerController(VideoPlayerController videoPlayerController) {
     _videoPlayerController = videoPlayerController;
     notifyListeners();
   }
 
-  /// ビデオファイルパスセッター
+  /// Video file path setter
   set videoFilePath(String? path) {
     _videoFilePath = path;
     notifyListeners();
   }
 
-  /// コントローラー初期化
+  /// Controller initialization
   void initControllers() {
     _isChewieControllerInitialized = false;
     _videoPlayerController = VideoPlayerController.file(File(videoFilePath!));
 
-    // 正確なアスペクト比を取得するため、VideoPlayerControllerが初期化された後にChewieControllerの設定を行う
+    // Set up ChewieController after VideoPlayerController initialization to get accurate aspect ratio
     _videoPlayerController.initialize().then((_) {
       chewieController = ChewieController(
         videoPlayerController: _videoPlayerController,
@@ -70,7 +70,7 @@ class FencingVideoPlayerModel extends ChangeNotifier {
     });
   }
 
-  /// ビデオをローカルに保存
+  /// Save video to local storage
   Future<bool> saveVideoToGallery() async {
     final result = await GallerySaver.saveVideo(
       _videoFilePath!,

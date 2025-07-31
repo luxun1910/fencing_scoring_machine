@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
-/// フェンシングカメラモデル
+/// Fencing camera model
 class FencingCameraModel extends ChangeNotifier with WidgetsBindingObserver {
   FencingCameraModel(CameraDescription camera) {
     camera = camera;
@@ -31,7 +31,7 @@ class FencingCameraModel extends ChangeNotifier with WidgetsBindingObserver {
 
     if (state == AppLifecycleState.paused) {
       cameraController.dispose();
-      // スライダーの位置を初期設定に戻す
+      // Reset slider position to default
       _sliderValue = 0.1;
       notifyListeners();
     }
@@ -50,14 +50,14 @@ class FencingCameraModel extends ChangeNotifier with WidgetsBindingObserver {
     }
   }
 
-  /// ズームレベル設定
+  /// Zoom level setting
   Future<void> setZoomLevel() async {
     _maxZoomLevel = await cameraController.getMaxZoomLevel();
     _minZoomLevel = await cameraController.getMinZoomLevel();
     notifyListeners();
   }
 
-  /// スライダー値を更新
+  /// Update slider value
   void updateSliderValue(double value) {
     _sliderValue = value;
     final valueForZoom = value * 10;
@@ -67,30 +67,30 @@ class FencingCameraModel extends ChangeNotifier with WidgetsBindingObserver {
     notifyListeners();
   }
 
-  /// カメラディスクリプション
+  /// Camera description
   late CameraDescription camera;
 
-  /// カメラコントローラー
+  /// Camera controller
   late CameraController cameraController;
 
-  /// カメラコントローラー初期化フューチャー
+  /// Camera controller initialization future
   late Future<void> initializeControllerFuture;
 
-  /// 最小ズームレベル
+  /// Minimum zoom level
   double _minZoomLevel = 0;
 
-  /// 最小ズームレベルゲッター
+  /// Minimum zoom level getter
   double get minZoomLevel => _minZoomLevel;
 
-  /// 最大ズームレベル
+  /// Maximum zoom level
   double _maxZoomLevel = 0;
 
-  /// 最大ズームレベルゲッター
+  /// Maximum zoom level getter
   double get maxZoomLevel => _maxZoomLevel;
 
-  /// スライダー値
+  /// Slider value
   double _sliderValue = 0.1;
 
-  /// スライダー値ゲッター
+  /// Slider value getter
   double get sliderValue => _sliderValue;
 }

@@ -3,7 +3,7 @@ import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_sc
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-/// スコア表示カラムウィジェット
+/// Score display column widget
 class ScoreColumnWidget extends StatelessWidget {
   final bool isLeftSide;
   final Color scoreColor;

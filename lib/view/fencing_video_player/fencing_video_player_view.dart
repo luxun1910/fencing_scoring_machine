@@ -5,7 +5,7 @@ import 'package:chewie/chewie.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
-/// フェンシングビデオ再生画面
+/// Fencing video player screen
 class FencingVideoPlayerView extends StatelessWidget {
   const FencingVideoPlayerView({super.key});
 
@@ -21,7 +21,7 @@ class FencingVideoPlayerView extends StatelessWidget {
           GestureDetector(
             child: const Icon(Icons.save),
             onTap: () async {
-              // タップ時処理
+              // Tap processing
               final result = await controller.saveVideoToGallery();
               if (result && context.mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -34,7 +34,7 @@ class FencingVideoPlayerView extends StatelessWidget {
             },
           ),
           const SizedBox(
-            width: 10, // 位置調整
+            width: 10, // Position adjustment
           )
         ],
       ),
@@ -43,7 +43,7 @@ class FencingVideoPlayerView extends StatelessWidget {
   }
 
   Widget _buildBody(FencingVideoPlayerModel model) {
-    // 初期化状態フラグに基づいてUIを切り替え
+    // Switch UI based on initialization status flag
     if (model.isChewieControllerInitialized) {
       return Chewie(
         controller: model.chewieController,

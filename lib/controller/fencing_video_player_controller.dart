@@ -1,6 +1,6 @@
 import 'package:fencing_scoring_machine/model/fencing_video_player/fencing_video_player_model.dart';
 
-/// フェンシングビデオプレイヤーコントローラー
+/// Fencing video player controller
 class FencingVideoPlayerController {
   late FencingVideoPlayerModel _model;
 

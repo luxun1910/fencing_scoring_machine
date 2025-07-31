@@ -11,46 +11,48 @@ void main() {
   });
 
   group('FencingScoringMachine', () {
-    test('初期残り時間表示は「03:00」である', () {
+    test('Initial remaining time display is "03:00"', () {
       expect(machine.remainingTime, "03:00");
     });
 
-    test('残り時間が1減ると「02:59」と表示される', () {
+    test('When remaining time decreases by 1, it displays "02:59"', () {
       machine.minusSeconds();
       expect(machine.remainingTime, "02:59");
     });
 
-    test('残り時間が0の状態でそれ以上減らない', () {
-      // 秒数を0にする
+    test('When remaining time is 0, it cannot be reduced further', () {
+      // Set seconds to 0
       machine.secondsLeft = 0;
       expect(machine.remainingTime, "00:00");
 
-      // さらに減らそうとしても変わらない
+      // Even if we try to reduce it further, it doesn't change
       machine.minusSeconds();
       expect(machine.remainingTime, "00:00");
     });
 
-    test('左側の選手のスコアが1増える', () {
+    test('Left player score increases by 1', () {
       machine.getLeftScoreUp();
       expect(machine.leftScore, 1);
     });
 
-    test('右側の選手のスコアが1増える', () {
+    test('Right player score increases by 1', () {
       machine.getRightScoreUp();
       expect(machine.rightScore, 1);
     });
 
-    test('左側の選手のスコアが1減る', () {
+    test('Left player score decreases by 1', () {
       machine.getLeftScoreDown();
       expect(machine.leftScore, -1);
     });
 
-    test('右側の選手のスコアが1減る', () {
+    test('Right player score decreases by 1', () {
       machine.getRightScoreDown();
       expect(machine.rightScore, -1);
     });
 
-    test('リセットすると左右のスコアが0になり、残り時間が3分になること', () {
+    test(
+        'When reset, both left and right scores become 0 and remaining time becomes 3 minutes',
+        () {
       machine.minusSeconds();
       machine.getLeftScoreUp();
       machine.getRightScoreUp();
@@ -61,7 +63,9 @@ void main() {
       expect(machine.remainingTime, "03:00");
     });
 
-    test('複数回スコアを増減させた場合に正しく計算されること', () {
+    test(
+        'When scores are increased and decreased multiple times, they are calculated correctly',
+        () {
       machine.getLeftScoreUp();
       machine.getLeftScoreUp();
       machine.getLeftScoreDown();
@@ -74,11 +78,11 @@ void main() {
       expect(machine.rightScore, 2);
     });
 
-    test('タイマーの初期状態は停止している', () {
+    test('Timer initial state is stopped', () {
       expect(machine.isTimerStarting, false);
     });
 
-    test('タイマーの状態を変更できる', () {
+    test('Timer state can be changed', () {
       machine.isTimerStarting = true;
       expect(machine.isTimerStarting, true);
 
@@ -86,7 +90,7 @@ void main() {
       expect(machine.isTimerStarting, false);
     });
 
-    test('残り時間を直接設定できる', () {
+    test('Remaining time can be set directly', () {
       machine.secondsLeft = 120;
       expect(machine.remainingTime, "02:00");
 
@@ -94,11 +98,11 @@ void main() {
       expect(machine.remainingTime, "00:30");
     });
 
-    test('latestVideoFilePathの初期値はnullである', () {
+    test('Initial value of latestVideoFilePath is null', () {
       expect(machine.latestVideoFilePath, null);
     });
 
-    test('latestVideoFilePathを設定・取得できる', () {
+    test('latestVideoFilePath can be set and retrieved', () {
       const testPath = "/test/video/path.mp4";
       machine.latestVideoFilePath = testPath;
       expect(machine.latestVideoFilePath, testPath);

@@ -1,32 +1,32 @@
 import 'package:fencing_scoring_machine/model/settings_model.dart';
 
-/// 設定画面コントローラー
+/// Settings screen controller
 class SettingsController {
   final SettingsModel _settingsModel;
 
   SettingsController(this._settingsModel);
 
-  /// ビデオ有効/無効の設定
+  /// Video enable/disable setting
   Future<void> setVideoEnable(bool value) async {
     await _settingsModel.setVideoEnable(value);
   }
 
-  /// ビデオ自動保存の設定
+  /// Video auto save setting
   Future<void> setIsVideoAutoSave(bool value) async {
     await _settingsModel.setIsVideoAutoSave(value);
   }
 
-  /// ビデオプレビューサイズの設定
+  /// Video preview size setting
   Future<void> setCameraPreviewSize(int size) async {
     await _settingsModel.setCameraPreviewSize(size);
   }
 
-  /// ビデオプレビュー位置の設定
+  /// Video preview position setting
   Future<void> setVideoPreviewPositionWhenLandscape(Position position) async {
     await _settingsModel.setVideoPreviewPositionWhenLandscape(position);
   }
 
-  /// ダブルボタン有効/無効の設定
+  /// Double button enable/disable setting
   Future<void> setDoubleButtonEnable(bool value) async {
     await _settingsModel.setDoubleButtonEnable(value);
   }

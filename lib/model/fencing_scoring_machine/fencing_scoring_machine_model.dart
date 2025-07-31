@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-/// フェンシング審判機モデル
+/// Fencing scoring machine model
 class FencingScoringMachineModel extends ChangeNotifier
     with WidgetsBindingObserver {
   FencingScoringMachineModel() {
@@ -15,41 +15,41 @@ class FencingScoringMachineModel extends ChangeNotifier
     super.dispose();
   }
 
-  /// 左側選手のスコア
+  /// Left player's score
   int get leftScore => _leftScore;
 
-  /// 右側選手のスコア
+  /// Right player's score
   int get rightScore => _rightScore;
 
-  /// 文字列形式の残り時間
+  /// Remaining time in string format
   String get remainingTime {
     var minutes = _secondsLeft ~/ 60;
     var seconds = _secondsLeft - minutes * 60;
     return "${minutes.toString().padLeft(2, "0")}:${seconds.toString().padLeft(2, "0")}";
   }
 
-  /// タイマーインスタンス
+  /// Timer instance
   Timer? timer;
 
-  /// タイマー起動中か
+  /// Whether timer is running
   bool _isTimerStarting = false;
 
-  /// タイマー起動中かゲッター
+  /// Timer running status getter
   bool get isTimerStarting => _isTimerStarting;
 
-  /// タイマー起動中かセッター
+  /// Timer running status setter
   set isTimerStarting(bool isStarting) {
     _isTimerStarting = isStarting;
     notifyListeners();
   }
 
-  /// 左側選手のスコア
+  /// Left player's score
   int _leftScore = 0;
 
-  /// 右側選手のスコア
+  /// Right player's score
   int _rightScore = 0;
 
-  /// 残り秒数
+  /// Remaining seconds
   int _secondsLeft = 180;
 
   int get secondsLeft => _secondsLeft;
@@ -93,7 +93,7 @@ class FencingScoringMachineModel extends ChangeNotifier
     notifyListeners();
   }
 
-  /// 最新のビデオファイルパス
+  /// Latest video file path
   String? _latestVideoFilePath;
 
   String? get latestVideoFilePath => _latestVideoFilePath;
@@ -103,7 +103,7 @@ class FencingScoringMachineModel extends ChangeNotifier
     notifyListeners();
   }
 
-  /// 残り秒数を1減らす
+  /// Decrease remaining seconds by 1
   void minusSeconds() {
     if (_secondsLeft > 0) {
       _secondsLeft--;
@@ -111,31 +111,31 @@ class FencingScoringMachineModel extends ChangeNotifier
     }
   }
 
-  /// 左側選手のスコアを増やす
+  /// Increase left player's score
   void getLeftScoreUp() {
     _leftScore++;
     notifyListeners();
   }
 
-  /// 左側選手のスコアを減らす
+  /// Decrease left player's score
   void getLeftScoreDown() {
     _leftScore--;
     notifyListeners();
   }
 
-  /// 右側選手のスコアを増やす
+  /// Increase right player's score
   void getRightScoreUp() {
     _rightScore++;
     notifyListeners();
   }
 
-  /// 右側選手のスコアを減らす
+  /// Decrease right player's score
   void getRightScoreDown() {
     _rightScore--;
     notifyListeners();
   }
 
-  /// スコア・時間をリセットする
+  /// Reset scores and time
   void resetAll() {
     _leftScore = 0;
     _rightScore = 0;

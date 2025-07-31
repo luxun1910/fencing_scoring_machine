@@ -4,7 +4,7 @@ import 'package:fencing_scoring_machine/log_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-/// バナー広告モデル
+/// Banner ad model
 class BannerAdModel extends ChangeNotifier with WidgetsBindingObserver {
   BannerAdModel() {
     bannerAd = BannerAd(
@@ -12,7 +12,7 @@ class BannerAdModel extends ChangeNotifier with WidgetsBindingObserver {
         size: AdSize.fullBanner,
         request: const AdRequest(),
         listener: const BannerAdListener());
-    logger.i("広告初期化完了");
+    logger.i("Banner ad initialized");
     WidgetsBinding.instance.addObserver(this);
     notifyListeners();
   }
@@ -23,28 +23,28 @@ class BannerAdModel extends ChangeNotifier with WidgetsBindingObserver {
     super.dispose();
   }
 
-  /// バナー広告
+  /// Banner ad
   BannerAd? bannerAd;
 
-  /// バナー広告ID
+  /// Banner ad ID
   String get bannerAdUnitId {
     var bunnerAdUnitIDForAndroid =
         const String.fromEnvironment('bunnerAdUnitIDForAndroid');
 
     if (Platform.isAndroid) {
-      // 広告
+      // Advertisement
       return bunnerAdUnitIDForAndroid;
     } else if (Platform.isIOS) {
-      //テスト広告
+      // Test advertisement
       return "ca-app-pub-3940256099942544/2934735716";
     } else {
       throw UnsupportedError("Unsupported platform");
     }
   }
 
-  /// バナー広告読み込み
+  /// Load banner ad
   void loadBannerAd() async {
     await bannerAd?.load();
-    logger.i("広告読み込み完了");
+    logger.i("Banner ad loaded");
   }
 }
