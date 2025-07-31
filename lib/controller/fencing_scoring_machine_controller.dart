@@ -11,6 +11,7 @@ import 'package:fencing_scoring_machine/view/fencing_video_player/fencing_video_
 import 'package:fencing_scoring_machine/view/settings_view.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery_saver_plus/gallery_saver.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /// フェンシング審判機コントローラー
 class FencingScoringMachineController extends WidgetsBindingObserver {
@@ -289,7 +290,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
           ),
           actions: [
             TextButton(
-              child: const Text("Close"),
+              child: Text(AppLocalizations.of(context)!.close),
               onPressed: () {
                 Navigator.of(context).pop();
               },

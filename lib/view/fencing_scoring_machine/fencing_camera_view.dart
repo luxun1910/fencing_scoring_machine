@@ -35,7 +35,7 @@ class FencingCameraView extends StatelessWidget {
                         Text(AppLocalizations.of(context)!.offerPermissionText),
                     actions: [
                       TextButton(
-                        child: const Text("Close"),
+                        child: Text(AppLocalizations.of(context)!.close),
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
