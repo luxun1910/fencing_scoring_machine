@@ -66,14 +66,8 @@ class FencingScoringMachineView extends StatelessWidget {
 
                         // Left Score Column
                         ScoreColumnWidget(
-                          score: machine.leftScore,
+                          isLeftSide: true,
                           scoreColor: Colors.red,
-                          onScoreUp: () => context
-                              .read<FencingScoringMachineController>()
-                              .leftScoreUp(),
-                          onScoreDown: () => context
-                              .read<FencingScoringMachineController>()
-                              .leftScoreDown(),
                           scoreTextSize: scoreTextSize,
                           buttonTextSize: buttonTextSize,
                           height: height,
@@ -81,23 +75,14 @@ class FencingScoringMachineView extends StatelessWidget {
 
                         // Control Panel
                         ControlPanelWidget(
-                          remainingTime: machine.remainingTime,
-                          isTimerStarting: machine.isTimerStarting,
-                          isDoubleButtonEnable: settings.isDoubleButtonEnable,
                           height: height,
                           width: width,
                         ),
 
                         // Right Score Column
                         ScoreColumnWidget(
-                          score: machine.rightScore,
+                          isLeftSide: false,
                           scoreColor: Colors.green,
-                          onScoreUp: () => context
-                              .read<FencingScoringMachineController>()
-                              .rightScoreUp(),
-                          onScoreDown: () => context
-                              .read<FencingScoringMachineController>()
-                              .rightScoreDown(),
                           scoreTextSize: scoreTextSize,
                           buttonTextSize: buttonTextSize,
                           height: height,

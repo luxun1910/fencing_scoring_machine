@@ -1,27 +1,27 @@
 import 'package:fencing_scoring_machine/controller/fencing_scoring_machine_controller.dart';
+import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_scoring_machine_model.dart';
+import 'package:fencing_scoring_machine/model/settings_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /// コントロールパネルウィジェット
 class ControlPanelWidget extends StatelessWidget {
-  final String remainingTime;
-  final bool isTimerStarting;
-  final bool isDoubleButtonEnable;
   final double height;
   final double width;
 
   const ControlPanelWidget({
     super.key,
-    required this.remainingTime,
-    required this.isTimerStarting,
-    required this.isDoubleButtonEnable,
     required this.height,
     required this.width,
   });
 
   @override
   Widget build(BuildContext context) {
+    final machine = context.watch<FencingScoringMachineModel>();
+    final settings = context.watch<SettingsModel>();
+    final controller = context.watch<FencingScoringMachineController>();
+
     const Size maxSize = Size(double.maxFinite, double.maxFinite);
 
     return Expanded(
@@ -37,10 +37,25 @@ class ControlPanelWidget extends StatelessWidget {
               flex: 1,
               child: GestureDetector(
                 onTap: () {
-                  if (!isTimerStarting) {
-                    context
-                        .read<FencingScoringMachineController>()
-                        .openChangeTimeDialog(context);
+                  if (!machine.isTimerStarting) {
+                    controller.openChangeTimeDialog(context);
+                  }
+                },
+                child: FittedBox(
+                  fit: BoxFit.contain,
+                  child: Text(
+                    machine.remainingTime,
+                  ),
+                ),
+              ),
+            ),
+            // Set Counter(Optional)
+            Expanded(
+              flex: 1,
+              child: GestureDetector(
+                onTap: () {
+                  if (!machine.isTimerStarting) {
+                    controller.openChangeTimeDialog(context);
                   }
                 },
                 child: FittedBox(
@@ -52,7 +67,7 @@ class ControlPanelWidget extends StatelessWidget {
               ),
             ),
             // Double Hit Button (conditional)
-            if (isDoubleButtonEnable)
+            if (settings.isDoubleButtonEnable)
               Expanded(
                 flex: 1,
                 child: Padding(
@@ -60,9 +75,7 @@ class ControlPanelWidget extends StatelessWidget {
                       EdgeInsetsDirectional.fromSTEB(0, 0, 0, height * 0.01),
                   child: ElevatedButton(
                     onPressed: () => {
-                      context
-                          .read<FencingScoringMachineController>()
-                          .doubleHit(),
+                      controller.doubleHit(),
                     },
                     style: TextButton.styleFrom(
                       fixedSize: const Size(double.maxFinite, double.maxFinite),
@@ -87,7 +100,7 @@ class ControlPanelWidget extends StatelessWidget {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, height * 0.01),
                 child: ElevatedButton(
                   onPressed: () => {
-                    context.read<FencingScoringMachineController>().pushTimer(),
+                    controller.pushTimer(),
                   },
                   style: TextButton.styleFrom(
                     fixedSize: maxSize,
@@ -96,7 +109,7 @@ class ControlPanelWidget extends StatelessWidget {
                       color: Colors.white,
                     ),
                     backgroundColor:
-                        isTimerStarting ? Colors.red : Colors.green,
+                        machine.isTimerStarting ? Colors.red : Colors.green,
                     elevation: 3,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
@@ -112,8 +125,7 @@ class ControlPanelWidget extends StatelessWidget {
             Expanded(
               flex: 1,
               child: ElevatedButton(
-                onPressed: () =>
-                    context.read<FencingScoringMachineController>().resetAll(),
+                onPressed: () => controller.resetAll(),
                 style: TextButton.styleFrom(
                   fixedSize: maxSize,
                   padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),

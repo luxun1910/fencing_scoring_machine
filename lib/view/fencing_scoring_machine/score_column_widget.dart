@@ -1,21 +1,20 @@
+import 'package:fencing_scoring_machine/controller/fencing_scoring_machine_controller.dart';
+import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_scoring_machine_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 /// スコア表示カラムウィジェット
 class ScoreColumnWidget extends StatelessWidget {
-  final int score;
+  final bool isLeftSide;
   final Color scoreColor;
-  final VoidCallback onScoreUp;
-  final VoidCallback onScoreDown;
   final double scoreTextSize;
   final double buttonTextSize;
   final double height;
 
   const ScoreColumnWidget({
     super.key,
-    required this.score,
+    required this.isLeftSide,
     required this.scoreColor,
-    required this.onScoreUp,
-    required this.onScoreDown,
     required this.scoreTextSize,
     required this.buttonTextSize,
     required this.height,
@@ -23,6 +22,9 @@ class ScoreColumnWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final machine = context.watch<FencingScoringMachineModel>();
+    final score = isLeftSide ? machine.leftScore : machine.rightScore;
+
     const Size maxSize = Size(double.maxFinite, double.maxFinite);
     const String plus = "+";
     const String minus = "-";
@@ -50,7 +52,17 @@ class ScoreColumnWidget extends StatelessWidget {
             child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, height * 0.01),
               child: ElevatedButton(
-                  onPressed: onScoreUp,
+                  onPressed: () {
+                    if (isLeftSide) {
+                      context
+                          .read<FencingScoringMachineController>()
+                          .leftScoreUp();
+                    } else {
+                      context
+                          .read<FencingScoringMachineController>()
+                          .rightScoreUp();
+                    }
+                  },
                   style: TextButton.styleFrom(
                     fixedSize: maxSize,
                     padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
@@ -72,7 +84,17 @@ class ScoreColumnWidget extends StatelessWidget {
           Expanded(
             flex: 1,
             child: ElevatedButton(
-                onPressed: onScoreDown,
+                onPressed: () {
+                  if (isLeftSide) {
+                    context
+                        .read<FencingScoringMachineController>()
+                        .leftScoreDown();
+                  } else {
+                    context
+                        .read<FencingScoringMachineController>()
+                        .rightScoreDown();
+                  }
+                },
                 style: TextButton.styleFrom(
                   fixedSize: maxSize,
                   textStyle: const TextStyle(
