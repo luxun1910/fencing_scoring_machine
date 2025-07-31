@@ -1,27 +1,78 @@
 {
   "startStopButtonText": "Start/Stop",
   "@startStopButtonText": {
-    "description": "タイマースタート/ストップボタンのテキスト"
+    "description": "Start/Stop button text"
   },
   "doubleButtonText": "Double",
   "@doubleButtonText": {
-    "description": "クードゥブルボタンのテキスト"
+    "description": "Double button text"
   },
   "resetButtonText": "Reset",
+  "@resetButtonText": {
+    "description": "Reset button text"
+  },
   "offerPermissionText": "Please grant permissions for the camera and microphone from the app information.",
+  "@offerPermissionText": {
+    "description": "Offer permission text for camera and microphone"
+  },
   "offerPermissionDialogTitle": "Permission Denied",
+  "@offerPermissionDialogTitle": {
+    "description": "Offer permission dialog title"
+  },
   "videoPageTitle": "Video player screen",
+  "@videoPageTitle": {
+    "description": "Video player screen title"
+  },
   "videoSaveSuccessMessage": "The video has been saved in the gallery successfully!",
+  "@videoSaveSuccessMessage": {
+    "description": "Video save success message"
+  },
   "settingsTitle": "Settings",
+  "@settingsTitle": {
+    "description": "Settings title"
+  },
   "enable": "enable",
+  "@enable": {
+    "description": "Enable text"
+  },
   "disable": "disable",
+  "@disable": {
+    "description": "Disable text"
+  },
   "right": "right",
+  "@right": {
+    "description": "Right text"
+  },
   "left": "left",
+  "@left": {
+    "description": "Left text"
+  },
   "videoEnableOptionText": "Video enable",
+  "@videoEnableOptionText": {
+    "description": "Video enable option text"
+  },
   "videoAutosaveOptionText": "Video autosave",
+  "@videoAutosaveOptionText": {
+    "description": "Video autosave option text"
+  },
   "videoAutosaveOptionSubText": "The videos will be saved in the gallery.",
+  "@videoAutosaveOptionSubText": {
+    "description": "Video autosave option sub text"
+  },
   "videoPreviewSizeOptionText": "Video preview size",
+  "@videoPreviewSizeOptionText": {
+    "description": "Video preview size option text"
+  },
   "videoPositionOptionText": "Position of the video preview when the screen is horizontal",
+  "@videoPositionOptionText": {
+    "description": "Video position option text"
+  },
   "doubleButtonOptionText": "Double-touch button",
-  "privacyPolicy": "Privacy Policy"
+  "@doubleButtonOptionText": {
+    "description": "Double-touch button text"
+  },
+  "privacyPolicy": "Privacy Policy",
+  "@privacyPolicy": {
+    "description": "Privacy Policy text"
+  }
 }
