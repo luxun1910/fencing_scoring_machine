@@ -82,7 +82,7 @@ class MyApp extends StatelessWidget {
         supportedLocales: const [
           Locale('en'), // English
           Locale('ja'), // Japanese
-          Locale('fr')
+          Locale('fr'), // French
         ],
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light(),
