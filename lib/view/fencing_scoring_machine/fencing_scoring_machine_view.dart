@@ -3,9 +3,10 @@ import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_sc
 import 'package:fencing_scoring_machine/model/settings_model.dart';
 import 'package:fencing_scoring_machine/view/banner_ad_view.dart';
 import 'package:fencing_scoring_machine/view/fencing_scoring_machine/fencing_camera_view.dart';
+import 'package:fencing_scoring_machine/view/fencing_scoring_machine/score_column_widget.dart';
+import 'package:fencing_scoring_machine/view/fencing_scoring_machine/control_panel_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /// フェンシング審判機画面
 class FencingScoringMachineView extends StatelessWidget {
@@ -31,13 +32,7 @@ class FencingScoringMachineView extends StatelessWidget {
       scoreTextSize = 90;
     }
 
-    const Size maxSize = Size(double.maxFinite, double.maxFinite);
-
     final double buttonTextSize = height > width ? width * 0.15 : height * 0.15;
-
-    const String plus = "+";
-
-    const String minus = "-";
 
     return SafeArea(
       child: Scaffold(
@@ -68,289 +63,46 @@ class FencingScoringMachineView extends StatelessWidget {
                           Expanded(
                               flex: settings.videoPreviewSize,
                               child: const FencingCameraView()),
-                        // Left Column
-                        Expanded(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              // Left Score
-                              Expanded(
-                                flex: 1,
-                                child: FittedBox(
-                                  fit: BoxFit.fill,
-                                  child: Text(
-                                    machine.leftScore.toString(),
-                                    style: TextStyle(
-                                        fontSize: scoreTextSize,
-                                        color: Colors.red),
-                                  ),
-                                ),
-                              ),
-                              // Left ScoreUp Button
-                              Expanded(
-                                flex: 4,
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, height * 0.01),
-                                  child: ElevatedButton(
-                                      onPressed: () => context
-                                          .read<
-                                              FencingScoringMachineController>()
-                                          .leftScoreUp(),
-                                      style: TextButton.styleFrom(
-                                        fixedSize: maxSize,
-                                        padding: const EdgeInsetsDirectional
-                                            .fromSTEB(24, 0, 24, 0),
-                                        textStyle: const TextStyle(
-                                          color: Colors.white,
-                                        ),
-                                        elevation: 3,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                        ),
-                                      ),
-                                      child: Text(
-                                        plus,
-                                        style:
-                                            TextStyle(fontSize: buttonTextSize),
-                                      )),
-                                ),
-                              ),
-                              // Left Scoredown Button
-                              Expanded(
-                                flex: 1,
-                                child: ElevatedButton(
-                                    onPressed: () => context
-                                        .read<FencingScoringMachineController>()
-                                        .leftScoreDown(),
-                                    style: TextButton.styleFrom(
-                                      fixedSize: maxSize,
-                                      textStyle: const TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                      elevation: 3,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                    ),
-                                    child: FittedBox(
-                                      child: Text(
-                                        minus,
-                                        style:
-                                            TextStyle(fontSize: buttonTextSize),
-                                      ),
-                                    )),
-                              ),
-                            ],
-                          ),
+
+                        // Left Score Column
+                        ScoreColumnWidget(
+                          score: machine.leftScore,
+                          scoreColor: Colors.red,
+                          onScoreUp: () => context
+                              .read<FencingScoringMachineController>()
+                              .leftScoreUp(),
+                          onScoreDown: () => context
+                              .read<FencingScoringMachineController>()
+                              .leftScoreDown(),
+                          scoreTextSize: scoreTextSize,
+                          buttonTextSize: buttonTextSize,
+                          height: height,
                         ),
-                        // Middle Column
-                        Expanded(
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                width * 0.01, 0, width * 0.01, 0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      if (!machine.isTimerStarting) {
-                                        context
-                                            .read<
-                                                FencingScoringMachineController>()
-                                            .openChangeTimeDialog(context);
-                                      }
-                                    },
-                                    child: FittedBox(
-                                      fit: BoxFit.contain,
-                                      child: Text(
-                                        machine.remainingTime,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                if (settings.isDoubleButtonEnable)
-                                  Expanded(
-                                    flex: 1,
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 0, height * 0.01),
-                                      child: ElevatedButton(
-                                        onPressed: () => {
-                                          context
-                                              .read<
-                                                  FencingScoringMachineController>()
-                                              .doubleHit(),
-                                        },
-                                        style: TextButton.styleFrom(
-                                          fixedSize: const Size(
-                                              double.maxFinite,
-                                              double.maxFinite),
-                                          padding: const EdgeInsetsDirectional
-                                              .fromSTEB(24, 0, 24, 0),
-                                          textStyle: const TextStyle(
-                                            color: Colors.white,
-                                          ),
-                                          elevation: 3,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
-                                          ),
-                                        ),
-                                        child: Text(
-                                            AppLocalizations.of(context)!
-                                                .doubleButtonText),
-                                      ),
-                                    ),
-                                  ),
-                                // Start/Stop Button
-                                Expanded(
-                                  flex: 3,
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 0, height * 0.01),
-                                    child: ElevatedButton(
-                                      onPressed: () => {
-                                        context
-                                            .read<
-                                                FencingScoringMachineController>()
-                                            .pushTimer(),
-                                      },
-                                      style: TextButton.styleFrom(
-                                        fixedSize: maxSize,
-                                        padding: const EdgeInsetsDirectional
-                                            .fromSTEB(24, 0, 24, 0),
-                                        textStyle: const TextStyle(
-                                          color: Colors.white,
-                                        ),
-                                        backgroundColor: machine.isTimerStarting
-                                            ? Colors.red
-                                            : Colors.green,
-                                        elevation: 3,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                        ),
-                                      ),
-                                      child: Text(
-                                        '${AppLocalizations.of(context)!.startStopButtonText}${const String.fromEnvironment('appNamePrefix')}',
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: ElevatedButton(
-                                    onPressed: () => context
-                                        .read<FencingScoringMachineController>()
-                                        .resetAll(),
-                                    style: TextButton.styleFrom(
-                                      fixedSize: maxSize,
-                                      padding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              24, 0, 24, 0),
-                                      textStyle: const TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                      elevation: 3,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                    ),
-                                    child: Text(AppLocalizations.of(context)!
-                                        .resetButtonText),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+
+                        // Control Panel
+                        ControlPanelWidget(
+                          remainingTime: machine.remainingTime,
+                          isTimerStarting: machine.isTimerStarting,
+                          isDoubleButtonEnable: settings.isDoubleButtonEnable,
+                          height: height,
+                          width: width,
                         ),
-                        // Right Column
-                        Expanded(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              // Right Score
-                              Expanded(
-                                flex: 1,
-                                child: FittedBox(
-                                  fit: BoxFit.fill,
-                                  child: Text(
-                                    machine.rightScore.toString(),
-                                    style: TextStyle(
-                                        fontSize: scoreTextSize,
-                                        color: Colors.green),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 4,
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, height * 0.01),
-                                  child: ElevatedButton(
-                                    onPressed: () => context
-                                        .read<FencingScoringMachineController>()
-                                        .rightScoreUp(),
-                                    style: TextButton.styleFrom(
-                                      fixedSize: maxSize,
-                                      padding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              24, 0, 24, 0),
-                                      textStyle: const TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                      elevation: 3,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                    ),
-                                    child: Text(
-                                      plus,
-                                      style:
-                                          TextStyle(fontSize: buttonTextSize),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: ElevatedButton(
-                                  onPressed: () => context
-                                      .read<FencingScoringMachineController>()
-                                      .rightScoreDown(),
-                                  style: TextButton.styleFrom(
-                                    fixedSize: maxSize,
-                                    textStyle: const TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                    elevation: 3,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                  ),
-                                  child: FittedBox(
-                                    child: Text(
-                                      minus,
-                                      style:
-                                          TextStyle(fontSize: buttonTextSize),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+
+                        // Right Score Column
+                        ScoreColumnWidget(
+                          score: machine.rightScore,
+                          scoreColor: Colors.green,
+                          onScoreUp: () => context
+                              .read<FencingScoringMachineController>()
+                              .rightScoreUp(),
+                          onScoreDown: () => context
+                              .read<FencingScoringMachineController>()
+                              .rightScoreDown(),
+                          scoreTextSize: scoreTextSize,
+                          buttonTextSize: buttonTextSize,
+                          height: height,
                         ),
+
                         if (settings.isVideoEnable &&
                             settings.videoPreviewPositionWhenLandscape ==
                                 Position.right &&

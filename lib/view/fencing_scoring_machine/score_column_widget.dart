@@ -1,0 +1,97 @@
+import 'package:flutter/material.dart';
+
+/// スコア表示カラムウィジェット
+class ScoreColumnWidget extends StatelessWidget {
+  final int score;
+  final Color scoreColor;
+  final VoidCallback onScoreUp;
+  final VoidCallback onScoreDown;
+  final double scoreTextSize;
+  final double buttonTextSize;
+  final double height;
+
+  const ScoreColumnWidget({
+    super.key,
+    required this.score,
+    required this.scoreColor,
+    required this.onScoreUp,
+    required this.onScoreDown,
+    required this.scoreTextSize,
+    required this.buttonTextSize,
+    required this.height,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    const Size maxSize = Size(double.maxFinite, double.maxFinite);
+    const String plus = "+";
+    const String minus = "-";
+
+    return Expanded(
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // Score Display
+          Expanded(
+            flex: 1,
+            child: FittedBox(
+              fit: BoxFit.fill,
+              child: Text(
+                score.toString(),
+                style: TextStyle(fontSize: scoreTextSize, color: scoreColor),
+              ),
+            ),
+          ),
+          // Score Up Button
+          Expanded(
+            flex: 4,
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, height * 0.01),
+              child: ElevatedButton(
+                  onPressed: onScoreUp,
+                  style: TextButton.styleFrom(
+                    fixedSize: maxSize,
+                    padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                    textStyle: const TextStyle(
+                      color: Colors.white,
+                    ),
+                    elevation: 3,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  child: Text(
+                    plus,
+                    style: TextStyle(fontSize: buttonTextSize),
+                  )),
+            ),
+          ),
+          // Score Down Button
+          Expanded(
+            flex: 1,
+            child: ElevatedButton(
+                onPressed: onScoreDown,
+                style: TextButton.styleFrom(
+                  fixedSize: maxSize,
+                  textStyle: const TextStyle(
+                    color: Colors.white,
+                  ),
+                  elevation: 3,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                child: FittedBox(
+                  child: Text(
+                    minus,
+                    style: TextStyle(fontSize: buttonTextSize),
+                  ),
+                )),
+          ),
+        ],
+      ),
+    );
+  }
+}
