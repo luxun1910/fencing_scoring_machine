@@ -59,36 +59,36 @@ class FencingScoringMachineModel extends ChangeNotifier
     notifyListeners();
   }
 
-  /// セットカウント
-  int _setCount = 1;
+  /// Match number
+  int _matchNumber = 1;
 
-  /// セットカウントを取得
-  int get setCount => _setCount;
+  /// Get match number
+  int get matchNumber => _matchNumber;
 
-  /// セットカウントを設定
-  set setCount(int count) {
-    if (count < 1) {
-      count = 1;
+  /// Set match number value
+  set matchNumber(int newMatchNumber) {
+    if (newMatchNumber < 1) {
+      newMatchNumber = 1;
     }
-    if (count > 9) {
-      count = 9;
+    if (newMatchNumber > 9) {
+      newMatchNumber = 9;
     }
-    _setCount = count;
+    _matchNumber = newMatchNumber;
     notifyListeners();
   }
 
-  /// セットカウントを増やす
-  void setCountUp() {
-    if (_setCount < 9) {
-      _setCount++;
+  /// Increase match number
+  void increaseMatchNumber() {
+    if (_matchNumber < 9) {
+      _matchNumber++;
     }
     notifyListeners();
   }
 
-  /// セットカウントを減らす
-  void setCountDown() {
-    if (_setCount > 1) {
-      _setCount--;
+  /// Decrease match number
+  void decreaseMatchNumber() {
+    if (_matchNumber > 1) {
+      _matchNumber--;
     }
     notifyListeners();
   }

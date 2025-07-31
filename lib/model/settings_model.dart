@@ -72,15 +72,15 @@ class SettingsModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// セット数カウントオンオフ
-  late bool _isSetCountEnable = false;
+  /// Match number count on/off
+  late bool _isMatchNumberCountEnable = false;
 
-  /// セット数カウントオンオフゲッター
-  bool get isSetCountEnable => _isSetCountEnable;
+  /// Match number count on/off getter
+  bool get isMatchNumberCountEnable => _isMatchNumberCountEnable;
 
-  /// セット数カウントオンオフセッター
-  set isSetCountEnable(bool isEnable) {
-    _isSetCountEnable = isEnable;
+  /// Match number count on/off setter
+  set isMatchNumberCountEnable(bool isEnable) {
+    _isMatchNumberCountEnable = isEnable;
     notifyListeners();
   }
 
@@ -103,7 +103,8 @@ class SettingsModel extends ChangeNotifier {
     _videoPreviewSize = prefs.getInt('cameraPreviewSize') ?? 2;
     _isVideoEnable = prefs.getBool('isCameraEnable') ?? true;
     _isDoubleButtonEnable = prefs.getBool('isDoubleButtonEnable') ?? true;
-    _isSetCountEnable = prefs.getBool('isSetCountEnable') ?? false;
+    _isMatchNumberCountEnable =
+        prefs.getBool('isMatchNumberCountEnable') ?? false;
     _videoPreviewPositionWhenLandscape = Position.fromNum(
         prefs.getInt('videoPreviewPositionWhenLandscape') ?? 1);
     notifyListeners();
@@ -149,12 +150,12 @@ class SettingsModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// セット数カウントオンオフ設定
-  Future<void> setSetCountEnable(bool enable) async {
-    _isSetCountEnable = enable;
+  /// Match number count on/off setting
+  Future<void> setMatchNumberCountEnable(bool enable) async {
+    _isMatchNumberCountEnable = enable;
     final prefs = await SharedPreferences.getInstance();
 
-    await prefs.setBool('isSetCountEnable', enable);
+    await prefs.setBool('isMatchNumberCountEnable', enable);
 
     notifyListeners();
   }

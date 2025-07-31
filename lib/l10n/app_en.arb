@@ -80,8 +80,8 @@
   "@close": {
     "description": "Close button text"
   },
-  "setCountOptionText": "Set counter",
-  "@setCountOptionText": {
-    "description": "Set counter option text"
+  "matchNumberCountOptionText": "Match number counter",
+  "@matchNumberCountOptionText": {
+    "description": "Match number counter option text"
   }
 }

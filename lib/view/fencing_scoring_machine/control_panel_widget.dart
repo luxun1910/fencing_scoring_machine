@@ -49,8 +49,8 @@ class ControlPanelWidget extends StatelessWidget {
                 ),
               ),
             ),
-            // Set Counter(Optional)
-            if (settings.isSetCountEnable)
+            // Match Number Counter(Optional)
+            if (settings.isMatchNumberCountEnable)
               Expanded(
                 flex: 1,
                 child: GestureDetector(
@@ -63,13 +63,13 @@ class ControlPanelWidget extends StatelessWidget {
                     fit: BoxFit.contain,
                     child: Text(
                       style: const TextStyle(color: Colors.orangeAccent),
-                      '${machine.setCount} Set',
+                      '${machine.matchNumber} Set',
                     ),
                   ),
                 ),
               ),
-            // Set Count Button(Optional)
-            if (settings.isSetCountEnable)
+            // Match Number Count Button(Optional)
+            if (settings.isMatchNumberCountEnable)
               Expanded(
                   flex: 1,
                   child: Row(
@@ -77,7 +77,7 @@ class ControlPanelWidget extends StatelessWidget {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () {
-                            controller.setCountDown();
+                            controller.decreaseMatchNumber();
                           },
                           child: const Text('-'),
                         ),
@@ -85,7 +85,7 @@ class ControlPanelWidget extends StatelessWidget {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () {
-                            controller.setCountUp();
+                            controller.increaseMatchNumber();
                           },
                           child: const Text('+'),
                         ),

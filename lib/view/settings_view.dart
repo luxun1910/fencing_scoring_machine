@@ -172,7 +172,8 @@ class SettingsView extends StatelessWidget {
               ],
             ),
             ListTile(
-              title: Text(AppLocalizations.of(context)!.setCountOptionText),
+              title: Text(
+                  AppLocalizations.of(context)!.matchNumberCountOptionText),
             ),
             ListBody(
               children: [
@@ -180,9 +181,9 @@ class SettingsView extends StatelessWidget {
                   title: Text(AppLocalizations.of(context)!.enable),
                   leading: Radio<bool>(
                     value: true,
-                    groupValue: settings.isSetCountEnable,
+                    groupValue: settings.isMatchNumberCountEnable,
                     onChanged: (value) {
-                      controller.setSetCountEnable(value!);
+                      controller.setMatchNumberCountEnable(value!);
                     },
                   ),
                 ),
@@ -190,9 +191,9 @@ class SettingsView extends StatelessWidget {
                   title: Text(AppLocalizations.of(context)!.disable),
                   leading: Radio<bool>(
                     value: false,
-                    groupValue: settings.isSetCountEnable,
+                    groupValue: settings.isMatchNumberCountEnable,
                     onChanged: (value) {
-                      controller.setSetCountEnable(value!);
+                      controller.setMatchNumberCountEnable(value!);
                     },
                   ),
                 ),

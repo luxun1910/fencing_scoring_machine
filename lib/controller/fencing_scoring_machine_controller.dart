@@ -159,14 +159,14 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
     }
   }
 
-  /// セットカウントアップ
-  void setCountUp() {
-    _machine.setCountUp();
+  /// Increase match number
+  void increaseMatchNumber() {
+    _machine.increaseMatchNumber();
   }
 
-  /// セットカウントダウン
-  void setCountDown() {
-    _machine.setCountDown();
+  /// Decrease match number
+  void decreaseMatchNumber() {
+    _machine.decreaseMatchNumber();
   }
 
   /// 最新のビデオファイルパスを保存
@@ -330,7 +330,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
                   children: <Widget>[
                     Flexible(
                       child: DropdownButtonFormField<int>(
-                        value: _machine.setCount,
+                        value: _machine.matchNumber,
                         hint: const Text('数字を選択'),
                         items: List<int>.generate(9, (i) => i + 1)
                             .map((int value) {
@@ -340,7 +340,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
                           );
                         }).toList(),
                         onChanged: (int? newValue) {
-                          _machine.setCount = (newValue) as int;
+                          _machine.matchNumber = (newValue) as int;
                         },
                         validator: (value) {
                           if (value == null) {
@@ -355,7 +355,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
                 ElevatedButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      _machine.setCount = _machine.setCount;
+                      _machine.matchNumber = _machine.matchNumber;
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                             content: Text('The set count has changed!')),
