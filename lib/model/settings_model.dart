@@ -72,6 +72,18 @@ class SettingsModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// セット数カウントオンオフ
+  late bool _isSetCountEnable = false;
+
+  /// セット数カウントオンオフゲッター
+  bool get isSetCountEnable => _isSetCountEnable;
+
+  /// セット数カウントオンオフセッター
+  set isSetCountEnable(bool isEnable) {
+    _isSetCountEnable = isEnable;
+    notifyListeners();
+  }
+
   /// 横持ち時のビデオプレビュー位置
   late Position _videoPreviewPositionWhenLandscape = Position.right;
 
@@ -91,6 +103,7 @@ class SettingsModel extends ChangeNotifier {
     _videoPreviewSize = prefs.getInt('cameraPreviewSize') ?? 2;
     _isVideoEnable = prefs.getBool('isCameraEnable') ?? true;
     _isDoubleButtonEnable = prefs.getBool('isDoubleButtonEnable') ?? true;
+    _isSetCountEnable = prefs.getBool('isSetCountEnable') ?? false;
     _videoPreviewPositionWhenLandscape = Position.fromNum(
         prefs.getInt('videoPreviewPositionWhenLandscape') ?? 1);
     notifyListeners();
@@ -132,6 +145,16 @@ class SettingsModel extends ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
 
     await prefs.setBool('isDoubleButtonEnable', enable);
+
+    notifyListeners();
+  }
+
+  /// セット数カウントオンオフ設定
+  Future<void> setSetCountEnable(bool enable) async {
+    _isSetCountEnable = enable;
+    final prefs = await SharedPreferences.getInstance();
+
+    await prefs.setBool('isSetCountEnable', enable);
 
     notifyListeners();
   }

@@ -172,6 +172,33 @@ class SettingsView extends StatelessWidget {
               ],
             ),
             ListTile(
+              title: Text(AppLocalizations.of(context)!.setCountOptionText),
+            ),
+            ListBody(
+              children: [
+                ListTile(
+                  title: Text(AppLocalizations.of(context)!.enable),
+                  leading: Radio<bool>(
+                    value: true,
+                    groupValue: settings.isSetCountEnable,
+                    onChanged: (value) {
+                      controller.setSetCountEnable(value!);
+                    },
+                  ),
+                ),
+                ListTile(
+                  title: Text(AppLocalizations.of(context)!.disable),
+                  leading: Radio<bool>(
+                    value: false,
+                    groupValue: settings.isSetCountEnable,
+                    onChanged: (value) {
+                      controller.setSetCountEnable(value!);
+                    },
+                  ),
+                ),
+              ],
+            ),
+            ListTile(
               title: Text(
                 AppLocalizations.of(context)!.privacyPolicy,
                 style: const TextStyle(color: Colors.blue),

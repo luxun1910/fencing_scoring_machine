@@ -159,6 +159,16 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
     }
   }
 
+  /// セットカウントアップ
+  void setCountUp() {
+    _machine.setCountUp();
+  }
+
+  /// セットカウントダウン
+  void setCountDown() {
+    _machine.setCountDown();
+  }
+
   /// 最新のビデオファイルパスを保存
   void _setCurrentLatestVideoFilePath(String xfileVideoPath) {
     if (_settings.isVideoAutoSave) {
@@ -279,6 +289,76 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                             content: Text('The remaining time has changed!')),
+                      );
+                      Navigator.of(context).pop();
+                    }
+                  },
+                  child: const Text('Change'),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              child: Text(AppLocalizations.of(context)!.close),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  /// セット数カウント設定画面を開く
+  void openChangeSetCountDialog(BuildContext context) {
+    final formKey = GlobalKey<FormState>();
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Set Count Setting"),
+          content: Form(
+            key: formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Flexible(
+                      child: DropdownButtonFormField<int>(
+                        value: _machine.setCount,
+                        hint: const Text('数字を選択'),
+                        items: List<int>.generate(9, (i) => i + 1)
+                            .map((int value) {
+                          return DropdownMenuItem<int>(
+                            value: value,
+                            child: Text(value.toString()),
+                          );
+                        }).toList(),
+                        onChanged: (int? newValue) {
+                          _machine.setCount = (newValue) as int;
+                        },
+                        validator: (value) {
+                          if (value == null) {
+                            return '数字を選択してください';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      _machine.setCount = _machine.setCount;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text('The set count has changed!')),
                       );
                       Navigator.of(context).pop();
                     }

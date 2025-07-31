@@ -50,22 +50,48 @@ class ControlPanelWidget extends StatelessWidget {
               ),
             ),
             // Set Counter(Optional)
-            Expanded(
-              flex: 1,
-              child: GestureDetector(
-                onTap: () {
-                  if (!machine.isTimerStarting) {
-                    controller.openChangeTimeDialog(context);
-                  }
-                },
-                child: FittedBox(
-                  fit: BoxFit.contain,
-                  child: Text(
-                    remainingTime,
+            if (settings.isSetCountEnable)
+              Expanded(
+                flex: 1,
+                child: GestureDetector(
+                  onTap: () {
+                    if (!machine.isTimerStarting) {
+                      controller.openChangeSetCountDialog(context);
+                    }
+                  },
+                  child: FittedBox(
+                    fit: BoxFit.contain,
+                    child: Text(
+                      style: const TextStyle(color: Colors.orangeAccent),
+                      '${machine.setCount} Set',
+                    ),
                   ),
                 ),
               ),
-            ),
+            // Set Count Button(Optional)
+            if (settings.isSetCountEnable)
+              Expanded(
+                  flex: 1,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            controller.setCountDown();
+                          },
+                          child: const Text('-'),
+                        ),
+                      ),
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            controller.setCountUp();
+                          },
+                          child: const Text('+'),
+                        ),
+                      ),
+                    ],
+                  )),
             // Double Hit Button (conditional)
             if (settings.isDoubleButtonEnable)
               Expanded(

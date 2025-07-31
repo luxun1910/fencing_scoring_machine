@@ -59,6 +59,40 @@ class FencingScoringMachineModel extends ChangeNotifier
     notifyListeners();
   }
 
+  /// セットカウント
+  int _setCount = 1;
+
+  /// セットカウントを取得
+  int get setCount => _setCount;
+
+  /// セットカウントを設定
+  set setCount(int count) {
+    if (count < 1) {
+      count = 1;
+    }
+    if (count > 9) {
+      count = 9;
+    }
+    _setCount = count;
+    notifyListeners();
+  }
+
+  /// セットカウントを増やす
+  void setCountUp() {
+    if (_setCount < 9) {
+      _setCount++;
+    }
+    notifyListeners();
+  }
+
+  /// セットカウントを減らす
+  void setCountDown() {
+    if (_setCount > 1) {
+      _setCount--;
+    }
+    notifyListeners();
+  }
+
   /// 最新のビデオファイルパス
   String? _latestVideoFilePath;
 

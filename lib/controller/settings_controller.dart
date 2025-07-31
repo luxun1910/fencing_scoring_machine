@@ -30,4 +30,9 @@ class SettingsController {
   Future<void> setDoubleButtonEnable(bool value) async {
     await _settingsModel.setDoubleButtonEnable(value);
   }
+
+  /// セット数カウント有効/無効の設定
+  Future<void> setSetCountEnable(bool value) async {
+    await _settingsModel.setSetCountEnable(value);
+  }
 }
