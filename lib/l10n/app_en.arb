@@ -1,4 +1,5 @@
 {
+  "@@locale": "en",
   "startStopButtonText": "Start/Stop",
   "@startStopButtonText": {
     "description": "Start/Stop button text"

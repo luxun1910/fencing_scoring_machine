@@ -1,4 +1,5 @@
 {
+  "@@locale": "fr",
   "startStopButtonText": "Démarrer/Arrêter",
   "doubleButtonText": "Coup double",
   "resetButtonText": "Réinitialiser",

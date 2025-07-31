@@ -1,4 +1,5 @@
 {
+  "@@locale": "ja",
   "startStopButtonText": "スタート/ストップ",
   "doubleButtonText": "クードゥブル",
   "resetButtonText": "リセット",
