@@ -311,15 +311,15 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
     );
   }
 
-  /// Open set count setting dialog
-  void openChangeSetCountDialog(BuildContext context) {
+  /// Open match number setting dialog
+  void openChangeMatchNumberDialog(BuildContext context) {
     final formKey = GlobalKey<FormState>();
 
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Set Count Setting"),
+          title: const Text("Match Number Setting"),
           content: Form(
             key: formKey,
             child: Column(
@@ -358,7 +358,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
                       _machine.matchNumber = _machine.matchNumber;
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                            content: Text('The set count has changed!')),
+                            content: Text('The match number has changed!')),
                       );
                       Navigator.of(context).pop();
                     }

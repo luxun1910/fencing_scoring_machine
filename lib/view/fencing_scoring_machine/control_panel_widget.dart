@@ -56,7 +56,7 @@ class ControlPanelWidget extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () {
                     if (!machine.isTimerStarting) {
-                      controller.openChangeSetCountDialog(context);
+                      controller.openChangeMatchNumberDialog(context);
                     }
                   },
                   child: FittedBox(
