@@ -17,5 +17,7 @@
   "videoPreviewSizeOptionText": "Taille de l’écran de prévisualisation vidéo",
   "videoPositionOptionText": "Position de l’écran de prévisualisation vidéo lorsque le smartphone est tenu horizontalement",
   "doubleButtonOptionText": "Bouton Coup double",
-  "privacyPolicy": "Politique de confidentialité"
+  "privacyPolicy": "Politique de confidentialité",
+  "close": "Fermer",
+  "setCountOptionText": "Compteur de séries"
 }

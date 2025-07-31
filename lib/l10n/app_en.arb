@@ -74,5 +74,13 @@
   "privacyPolicy": "Privacy Policy",
   "@privacyPolicy": {
     "description": "Privacy Policy text"
+  },
+  "close": "Close",
+  "@close": {
+    "description": "Close button text"
+  },
+  "setCountOptionText": "Set counter",
+  "@setCountOptionText": {
+    "description": "Set counter option text"
   }
 }

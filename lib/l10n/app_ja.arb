@@ -17,5 +17,7 @@
   "videoPreviewSizeOptionText": "ビデオプレビュー画面サイズ",
   "videoPositionOptionText": "スマホを横持ちにした時のビデオプレビュー画面の位置",
   "doubleButtonOptionText": "クードゥブルボタン",
-  "privacyPolicy": "プライバシーポリシー"
+  "privacyPolicy": "プライバシーポリシー",
+  "close": "閉じる",
+  "setCountOptionText": "セット数カウント"
 }
