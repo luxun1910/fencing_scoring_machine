@@ -110,5 +110,23 @@ void main() {
       machine.latestVideoFilePath = null;
       expect(machine.latestVideoFilePath, null);
     });
+
+    test('matchNumber cannot be set to 0', () {
+      machine.matchNumber = 1;
+      machine.decreaseMatchNumber();
+      expect(machine.matchNumber, 1);
+
+      machine.matchNumber = 0;
+      expect(machine.matchNumber, 1);
+    });
+
+    test('matchNumber cannot be set to 10', () {
+      machine.matchNumber = 9;
+      machine.increaseMatchNumber();
+      expect(machine.matchNumber, 9);
+
+      machine.matchNumber = 10;
+      expect(machine.matchNumber, 9);
+    });
   });
 }
