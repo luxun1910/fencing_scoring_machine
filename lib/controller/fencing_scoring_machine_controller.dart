@@ -234,11 +234,12 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Flexible(
+                    Expanded(
+                      flex: 1,
                       child: DropdownButtonFormField<int>(
                         value: dropdownValue1,
+                        isExpanded: true,
                         hint: Text(
                             AppLocalizations.of(context)!.selectNumberHint),
                         items: List<int>.generate(4, (i) => i).map((int value) {
@@ -258,9 +259,12 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
                         },
                       ),
                     ),
-                    Flexible(
+                    const SizedBox(width: 8),
+                    Expanded(
+                      flex: 1,
                       child: DropdownButtonFormField<int>(
                         value: dropdownValue2,
+                        isExpanded: true,
                         hint: Text(
                             AppLocalizations.of(context)!.selectNumberHint),
                         items:
@@ -330,33 +334,26 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Flexible(
-                      child: DropdownButtonFormField<int>(
-                        value: matchNumberOnDialog,
-                        hint: Text(
-                            AppLocalizations.of(context)!.selectNumberHint),
-                        items: List<int>.generate(9, (i) => i + 1)
-                            .map((int value) {
-                          return DropdownMenuItem<int>(
-                            value: value,
-                            child: Text(value.toString()),
-                          );
-                        }).toList(),
-                        onChanged: (int? newValue) {
-                          matchNumberOnDialog = (newValue) as int;
-                        },
-                        validator: (value) {
-                          if (value == null) {
-                            return AppLocalizations.of(context)!.selectNumber;
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                  ],
+                Flexible(
+                  child: DropdownButtonFormField<int>(
+                    value: matchNumberOnDialog,
+                    hint: Text(AppLocalizations.of(context)!.selectNumberHint),
+                    items: List<int>.generate(9, (i) => i + 1).map((int value) {
+                      return DropdownMenuItem<int>(
+                        value: value,
+                        child: Text(value.toString()),
+                      );
+                    }).toList(),
+                    onChanged: (int? newValue) {
+                      matchNumberOnDialog = (newValue) as int;
+                    },
+                    validator: (value) {
+                      if (value == null) {
+                        return AppLocalizations.of(context)!.selectNumber;
+                      }
+                      return null;
+                    },
+                  ),
                 ),
                 ElevatedButton(
                   onPressed: () {
