@@ -1,13 +1,13 @@
-import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_scoring_machine_model.dart';
+import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_scoring_machine_page_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  late FencingScoringMachineModel machine;
+  late FencingScoringMachinePageModel machine;
 
   setUp(() {
-    machine = FencingScoringMachineModel();
+    machine = FencingScoringMachinePageModel();
   });
 
   group('FencingScoringMachine', () {

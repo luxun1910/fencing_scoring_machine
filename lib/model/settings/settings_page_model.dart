@@ -18,9 +18,9 @@ enum Position {
   }
 }
 
-/// Settings screen model
-class SettingsModel extends ChangeNotifier {
-  SettingsModel() {
+/// Settings page model
+class SettingsPageModel extends ChangeNotifier {
+  SettingsPageModel() {
     _loadSelectedOption();
   }
 

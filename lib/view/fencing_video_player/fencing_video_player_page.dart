@@ -1,18 +1,18 @@
 import 'package:fencing_scoring_machine/controller/fencing_video_player_controller.dart';
-import 'package:fencing_scoring_machine/model/fencing_video_player/fencing_video_player_model.dart';
+import 'package:fencing_scoring_machine/model/fencing_video_player/fencing_video_player_page_model.dart';
 import 'package:flutter/material.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
-/// Fencing video player screen
-class FencingVideoPlayerView extends StatelessWidget {
-  const FencingVideoPlayerView({super.key});
+/// Fencing video player page
+class FencingVideoPlayerPage extends StatelessWidget {
+  const FencingVideoPlayerPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final controller = context.read<FencingVideoPlayerController>();
-    final model = context.watch<FencingVideoPlayerModel>();
+    final model = context.watch<FencingVideoPlayerPageModel>();
 
     return Scaffold(
       appBar: AppBar(
@@ -42,7 +42,7 @@ class FencingVideoPlayerView extends StatelessWidget {
     );
   }
 
-  Widget _buildBody(FencingVideoPlayerModel model) {
+  Widget _buildBody(FencingVideoPlayerPageModel model) {
     // Switch UI based on initialization status flag
     if (model.isChewieControllerInitialized) {
       return Chewie(

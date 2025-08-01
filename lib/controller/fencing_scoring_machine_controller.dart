@@ -3,12 +3,12 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:fencing_scoring_machine/app_constants.dart';
 import 'package:fencing_scoring_machine/log_helper.dart';
-import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_camera_model.dart';
-import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_scoring_machine_model.dart';
-import 'package:fencing_scoring_machine/model/fencing_video_player/fencing_video_player_model.dart';
-import 'package:fencing_scoring_machine/model/settings_model.dart';
-import 'package:fencing_scoring_machine/view/fencing_video_player/fencing_video_player_view.dart';
-import 'package:fencing_scoring_machine/view/settings_view.dart';
+import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_camera_widget_model.dart';
+import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_scoring_machine_page_model.dart';
+import 'package:fencing_scoring_machine/model/fencing_video_player/fencing_video_player_page_model.dart';
+import 'package:fencing_scoring_machine/model/settings/settings_page_model.dart';
+import 'package:fencing_scoring_machine/view/fencing_video_player/fencing_video_player_page.dart';
+import 'package:fencing_scoring_machine/view/settings/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery_saver_plus/gallery_saver.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -16,10 +16,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 /// Fencing scoring machine controller
 class FencingScoringMachineController extends WidgetsBindingObserver {
   FencingScoringMachineController(
-      FencingScoringMachineModel machine,
-      FencingCameraModel cameraModel,
-      SettingsModel settings,
-      FencingVideoPlayerModel videoPlayerModel) {
+      FencingScoringMachinePageModel machine,
+      FencingCameraWidgetModel cameraModel,
+      SettingsPageModel settings,
+      FencingVideoPlayerPageModel videoPlayerModel) {
     _machine = machine;
     _settings = settings;
     _cameraModel = cameraModel;
@@ -29,16 +29,16 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
   }
 
   /// Fencing scoring machine model
-  late FencingScoringMachineModel _machine;
+  late FencingScoringMachinePageModel _machine;
 
   /// Settings model
-  late SettingsModel _settings;
+  late SettingsPageModel _settings;
 
   /// Fencing camera model
-  late FencingCameraModel _cameraModel;
+  late FencingCameraWidgetModel _cameraModel;
 
   /// Fencing video player model
-  late FencingVideoPlayerModel _videoPlayerModel;
+  late FencingVideoPlayerPageModel _videoPlayerModel;
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
@@ -198,7 +198,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
       _videoPlayerModel.initControllers();
       Navigator.of(context)
           .push(MaterialPageRoute(
-        builder: (context) => const FencingVideoPlayerView(),
+        builder: (context) => const FencingVideoPlayerPage(),
       ))
           .then((_) {
         _videoPlayerModel.chewieController.dispose();
@@ -210,7 +210,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
   /// Move to settings screen
   void moveToSettingsPage(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const SettingsView(),
+      builder: (context) => const SettingsPage(),
     ));
   }
 

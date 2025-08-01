@@ -7,7 +7,7 @@ import 'package:gallery_saver_plus/gallery_saver.dart';
 import 'package:video_player/video_player.dart';
 
 /// Fencing video player page model
-class FencingVideoPlayerModel extends ChangeNotifier {
+class FencingVideoPlayerPageModel extends ChangeNotifier {
   /// Video file path
   String? _videoFilePath;
 

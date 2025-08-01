@@ -1,17 +1,17 @@
 import 'package:camera/camera.dart';
 import 'package:fencing_scoring_machine/controller/fencing_scoring_machine_controller.dart';
-import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_camera_model.dart';
+import 'package:fencing_scoring_machine/model/fencing_scoring_machine/fencing_camera_widget_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-/// Fencing camera screen
-class FencingCameraView extends StatelessWidget {
-  const FencingCameraView({super.key});
+/// Fencing camera widget
+class FencingCameraWidget extends StatelessWidget {
+  const FencingCameraWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final camera = context.watch<FencingCameraModel>();
+    final camera = context.watch<FencingCameraWidgetModel>();
     return GestureDetector(
       onTap: () {
         if (!camera.cameraController.value.isRecordingVideo) {
@@ -74,7 +74,7 @@ class CameraSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<FencingCameraModel>(
+    return Consumer<FencingCameraWidgetModel>(
       builder: (context, camera, child) {
         return FutureBuilder<void>(
           future: camera.setZoomLevel(),

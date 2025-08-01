@@ -1,17 +1,17 @@
 import 'package:fencing_scoring_machine/controller/settings_controller.dart';
-import 'package:fencing_scoring_machine/model/settings_model.dart';
+import 'package:fencing_scoring_machine/model/settings/settings_page_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// Settings screen
-class SettingsView extends StatelessWidget {
-  const SettingsView({super.key});
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final settings = context.watch<SettingsModel>();
+    final settings = context.watch<SettingsPageModel>();
     final controller = context.read<SettingsController>();
 
     return Scaffold(

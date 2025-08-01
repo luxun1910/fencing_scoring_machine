@@ -1,8 +1,8 @@
-import 'package:fencing_scoring_machine/model/settings_model.dart';
+import 'package:fencing_scoring_machine/model/settings/settings_page_model.dart';
 
-/// Settings screen controller
+/// Settings controller
 class SettingsController {
-  final SettingsModel _settingsModel;
+  final SettingsPageModel _settingsModel;
 
   SettingsController(this._settingsModel);
 

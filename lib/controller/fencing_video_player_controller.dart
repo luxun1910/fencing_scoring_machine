@@ -1,10 +1,10 @@
-import 'package:fencing_scoring_machine/model/fencing_video_player/fencing_video_player_model.dart';
+import 'package:fencing_scoring_machine/model/fencing_video_player/fencing_video_player_page_model.dart';
 
 /// Fencing video player controller
 class FencingVideoPlayerController {
-  late FencingVideoPlayerModel _model;
+  late FencingVideoPlayerPageModel _model;
 
-  FencingVideoPlayerController(FencingVideoPlayerModel model) {
+  FencingVideoPlayerController(FencingVideoPlayerPageModel model) {
     _model = model;
   }
 

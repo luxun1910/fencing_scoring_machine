@@ -4,9 +4,9 @@ import 'package:fencing_scoring_machine/log_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-/// Banner ad model
-class BannerAdModel extends ChangeNotifier with WidgetsBindingObserver {
-  BannerAdModel() {
+/// Banner ad widget model
+class BannerAdWidgetModel extends ChangeNotifier with WidgetsBindingObserver {
+  BannerAdWidgetModel() {
     bannerAd = BannerAd(
         adUnitId: bannerAdUnitId,
         size: AdSize.fullBanner,

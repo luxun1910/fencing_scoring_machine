@@ -1,9 +1,10 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
-/// Fencing camera model
-class FencingCameraModel extends ChangeNotifier with WidgetsBindingObserver {
-  FencingCameraModel(CameraDescription camera) {
+/// Fencing camera widget model
+class FencingCameraWidgetModel extends ChangeNotifier
+    with WidgetsBindingObserver {
+  FencingCameraWidgetModel(CameraDescription camera) {
     camera = camera;
     cameraController = CameraController(
       camera,
