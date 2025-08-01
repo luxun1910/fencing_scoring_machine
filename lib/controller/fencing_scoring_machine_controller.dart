@@ -318,6 +318,8 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
   void openChangeMatchNumberDialog(BuildContext context) {
     final formKey = GlobalKey<FormState>();
 
+    var matchNumberOnDialog = _machine.matchNumber;
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -333,7 +335,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
                   children: <Widget>[
                     Flexible(
                       child: DropdownButtonFormField<int>(
-                        value: _machine.matchNumber,
+                        value: matchNumberOnDialog,
                         hint: Text(
                             AppLocalizations.of(context)!.selectNumberHint),
                         items: List<int>.generate(9, (i) => i + 1)
@@ -344,7 +346,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
                           );
                         }).toList(),
                         onChanged: (int? newValue) {
-                          _machine.matchNumber = (newValue) as int;
+                          matchNumberOnDialog = (newValue) as int;
                         },
                         validator: (value) {
                           if (value == null) {
@@ -359,7 +361,7 @@ class FencingScoringMachineController extends WidgetsBindingObserver {
                 ElevatedButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      _machine.matchNumber = _machine.matchNumber;
+                      _machine.matchNumber = matchNumberOnDialog;
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                             content: Text(AppLocalizations.of(context)!
