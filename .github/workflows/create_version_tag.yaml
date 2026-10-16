@@ -8,16 +8,19 @@ on:
 jobs:
   create-version-tag:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v2
-      - name: "Check app version"
+      - uses: actions/checkout@v4
+      - name: Check app version
         run: |
-          echo "v$(yq '.version' pubspec.yaml)" | awk -F'[+]' '{print $1}' > TAG_NAME
-          echo "TAG_NAME=$(cat TAG_NAME)" >> $GITHUB_ENV
-          git ls-remote --tags | grep "$(cat TAG_NAME)$" > TAG_GREP || echo "" > TAG_GREP
-          echo "TAG_GREP=$(cat TAG_GREP)" >> $GITHUB_ENV
-      - name: "Create Git tag if not exist"
-        if: env.TAG_GREP == ''
+          TAG_NAME="v$(jq -r .version package.json)"
+          echo "TAG_NAME=$TAG_NAME" >> "$GITHUB_ENV"
+          if git ls-remote --tags origin | grep -q "refs/tags/$TAG_NAME$"; then
+            echo "TAG_EXISTS=true" >> "$GITHUB_ENV"
+          fi
+      - name: Create Git tag if not exist
+        if: env.TAG_EXISTS != 'true'
         run: |
-          git tag '${{ env.TAG_NAME }}'
-          git push origin '${{ env.TAG_NAME }}'
+          git tag "$TAG_NAME"
+          git push origin "$TAG_NAME"
