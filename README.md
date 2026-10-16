@@ -13,8 +13,17 @@ npm test             # Vitest
 npm run typecheck
 npm run lint
 npm run preview      # production build served by `wrangler dev`
-npm run deploy       # build + `wrangler deploy`
+npm run deploy       # manual deploy: build + `wrangler deploy`
 ```
+
+## Deployment
+
+Deploys run on Cloudflare Workers Builds (Git integration): every push to `main` builds and deploys, and pushes to other branches get preview URLs. Settings in the Cloudflare dashboard (Workers & Pages → `fencing-scoring-machine` → Settings → Build):
+
+- Build command: `npm run build`
+- Deploy command: `npx wrangler deploy`
+- Node version comes from `.node-version`.
+- `VITE_APP_NAME_PREFIX`, if used, is set under build variables.
 
 `VITE_APP_NAME_PREFIX` (optional) is appended to the Start/Stop label, replacing the old `appNamePrefix` dart-define.
 
