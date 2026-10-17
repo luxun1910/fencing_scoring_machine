@@ -48,4 +48,12 @@ export const fr: Messages = {
     'Scores égaux : le côté le moins bien classé au classement initial reçoit le carton P noir. Quel côté est le mieux classé ?',
   pCardUnavailableMessage: 'Aucun carton P ne peut être donné maintenant.',
   revokePCardButtonText: 'Annuler le dernier carton P',
+  installBannerText: 'Installez cette application pour l’utiliser en plein écran et hors ligne.',
+  installButtonText: 'Installer',
+  installHowToButtonText: 'Comment installer',
+  installIosTitle: 'Sur l’écran d’accueil',
+  installIosStep1: 'Dans Safari, touchez le bouton Partager (le carré avec une flèche).',
+  installIosStep2: 'Faites défiler et touchez « Sur l’écran d’accueil ».',
+  installIosStep3: 'Touchez « Ajouter ». L’application s’ouvre ensuite depuis son icône.',
+  dismiss: 'Fermer',
 };

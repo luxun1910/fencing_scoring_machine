@@ -44,4 +44,12 @@ export const ja: Messages = {
   pBlackTieMessage: '同点のため、初期シード順位が下位の側にPブラックカード。シード上位はどちらですか？',
   pCardUnavailableMessage: '現在Pカードは提示できません。',
   revokePCardButtonText: '直前のPカードを取り消す',
+  installBannerText: 'アプリとしてインストールすると、全画面・オフラインで使えます。',
+  installButtonText: 'インストール',
+  installHowToButtonText: 'インストール方法',
+  installIosTitle: 'ホーム画面に追加',
+  installIosStep1: 'Safari の共有ボタン（四角から矢印が出ているアイコン）をタップします。',
+  installIosStep2: '下にスクロールして「ホーム画面に追加」をタップします。',
+  installIosStep3: '「追加」をタップすると、ホーム画面のアイコンからアプリとして起動できます。',
+  dismiss: '閉じる',
 };

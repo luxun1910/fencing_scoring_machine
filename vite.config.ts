@@ -12,9 +12,15 @@ export default defineConfig({
         name: 'Fencing Scoring Machine',
         short_name: 'Fencing',
         description: 'Fencing scoring machine with timer and video replay',
+        // Fixed identity, so a future change of start_url does not create a second installed app.
+        id: '/',
+        start_url: '/',
+        scope: '/',
         theme_color: '#111418',
         background_color: '#111418',
-        display: 'fullscreen',
+        // iOS has no fullscreen mode; standalone is the baseline and fullscreen is preferred where supported.
+        display: 'standalone',
+        display_override: ['fullscreen', 'standalone'],
         orientation: 'any',
         icons: [
           { src: 'icon-192.png', sizes: '192x192', type: 'image/png' },

@@ -32,7 +32,7 @@ interface SettingsStore extends Settings {
 }
 
 /** localStorage that degrades to "nothing persisted" when storage is blocked (private mode etc.). */
-const safeLocalStorage: StateStorage = {
+export const safeLocalStorage: StateStorage = {
   getItem: (name) => {
     try {
       return localStorage.getItem(name);

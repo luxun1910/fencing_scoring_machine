@@ -148,12 +148,19 @@ input {
 
 /* ---------- Scoring page ---------- */
 
+.scoring-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
 .scoring-page {
   position: relative;
+  flex: 1 1 0;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   gap: var(--gap);
-  height: 100dvh;
   padding: max(var(--gap), env(safe-area-inset-top)) max(var(--gap), env(safe-area-inset-right))
     max(var(--gap), env(safe-area-inset-bottom)) max(var(--gap), env(safe-area-inset-left));
   user-select: none;
@@ -354,6 +361,43 @@ input {
   background: var(--surface);
   color: var(--text);
   box-shadow: var(--shadow);
+}
+
+/* ---------- Install ---------- */
+
+.install-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: max(var(--gap), env(safe-area-inset-top)) max(var(--gap), env(safe-area-inset-right)) 0
+    max(var(--gap), env(safe-area-inset-left));
+  padding: 4px 4px 4px 14px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow);
+  font-size: 0.9rem;
+}
+
+.install-banner > span {
+  flex: 1;
+}
+
+.install-banner .btn,
+.settings-list > .btn {
+  padding: 8px 14px;
+  white-space: nowrap;
+}
+
+.install-banner .icon-btn {
+  width: 36px;
+  height: 36px;
+}
+
+.install-steps {
+  margin: 0;
+  padding-left: 1.4em;
+  line-height: 1.6;
 }
 
 /* ---------- Camera ---------- */

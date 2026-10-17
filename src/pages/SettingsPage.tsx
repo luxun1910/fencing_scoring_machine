@@ -1,3 +1,4 @@
+import { InstallButton } from '../components/InstallButton';
 import { PageHeader } from '../components/PageHeader';
 import { t } from '../i18n';
 import { useSettings, type Settings } from '../state/settingsStore';
@@ -73,6 +74,7 @@ export const SettingsPage = () => (
       <Choice setting="doubleButtonEnable" legend={t.doubleButtonOptionText} options={onOff} />
       <Choice setting="matchNumberCountEnable" legend={t.matchNumberCountOptionText} options={onOff} />
       <Choice setting="pCardEnable" legend={t.pCardOptionText} hint={t.pCardOptionSubText} options={onOff} />
+      <InstallButton />
       <a className="link" href={PRIVACY_POLICY_URL} target="_blank" rel="noreferrer">
         {t.privacyPolicy}
       </a>

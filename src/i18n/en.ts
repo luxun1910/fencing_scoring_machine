@@ -43,6 +43,14 @@ export const en = {
     'The scores are equal: the side with the lower initial seeding gets the P-black card. Which side has the higher seed?',
   pCardUnavailableMessage: 'No P-card can be awarded now.',
   revokePCardButtonText: 'Revoke the last P-card',
+  installBannerText: 'Install this app on your device for full-screen, offline use.',
+  installButtonText: 'Install app',
+  installHowToButtonText: 'How to install',
+  installIosTitle: 'Add to Home Screen',
+  installIosStep1: 'In Safari, tap the Share button (the square with an arrow).',
+  installIosStep2: 'Scroll down and tap “Add to Home Screen”.',
+  installIosStep3: 'Tap “Add”. The app then opens from its icon on your Home Screen.',
+  dismiss: 'Dismiss',
 } as const;
 
 export type MessageKey = keyof typeof en;
