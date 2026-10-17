@@ -57,6 +57,26 @@ describe('scoring page', () => {
     expect(screen.queryByText(t.doubleButtonText)).not.toBeInTheDocument();
   });
 
+  it('awards P-cards from the P button', async () => {
+    useSettings.setState({ pCardEnable: true });
+    const user = userEvent.setup();
+    render(<App />);
+
+    await user.click(screen.getByLabelText(t.pCardDialogTitle));
+    await user.click(within(screen.getByRole('dialog')).getByText(t.pRedButtonText));
+    expect([score('left'), score('right')]).toEqual(['1', '1']);
+    expect(screen.getByLabelText('left P-red')).toBeInTheDocument();
+    expect(screen.getByLabelText('right P-red')).toBeInTheDocument();
+
+    // Tied: the referee picks the side with the higher initial seed; the other side loses.
+    await user.click(screen.getByLabelText(t.pCardDialogTitle));
+    const dialog = screen.getByRole('dialog');
+    expect(within(dialog).getByText(t.pBlackTieMessage)).toBeInTheDocument();
+    await user.click(within(dialog).getByText(t.left));
+    expect(screen.getByLabelText('right P-black')).toBeInTheDocument();
+    expect(screen.queryByLabelText('left P-black')).not.toBeInTheDocument();
+  });
+
   it('hides the settings button while the clock runs', async () => {
     const user = userEvent.setup();
     render(<App />);

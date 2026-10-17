@@ -48,6 +48,35 @@ export const scoreDown = (side: domain.Side) => halt((s) => domain.scoreDown(s, 
 export const doubleHit = () => halt(domain.doubleHit);
 export const resetAll = () => halt(domain.resetBout);
 
+/** The match counter shows team relays, so it doubles as the team-event switch (44-44 instead of 14-14). */
+const isTeam = () => useSettings.getState().matchNumberCountEnable;
+
+export const nextPCard = () => domain.nextPCard(useMatch.getState(), isTeam());
+
+/** Called on every clock tick: one minute without a touch halts the bout and asks for a P-card. */
+export const checkNonCombativity = () => {
+  if (!useSettings.getState().pCardEnable) return;
+  if (!domain.isNonCombativity(useMatch.getState(), isTeam())) return;
+  halt(domain.clampToNonCombativity);
+  useMatch.getState().setPCardPrompt(true);
+};
+
+const closePCard = (transition: (s: domain.MatchState) => domain.MatchState) => {
+  halt(transition);
+  useMatch.getState().setPCardPrompt(false);
+};
+
+export const issuePRed = () => closePCard(domain.issuePRed);
+export const issuePBlack = (loser: domain.Side) => closePCard((s) => domain.issuePBlack(s, loser));
+export const revokeLastPCard = () => closePCard(domain.revokeLastPCard);
+
+/** Closed without a card: the minute starts again so it does not fire again straight away. */
+export const dismissPCard = () => {
+  const match = useMatch.getState();
+  if (match.pCardPrompt) match.apply(domain.restartMinute);
+  match.setPCardPrompt(false);
+};
+
 export const increaseMatchNumber = () => useMatch.getState().apply(domain.increaseMatchNumber);
 export const decreaseMatchNumber = () => useMatch.getState().apply(domain.decreaseMatchNumber);
 export const setMatchNumber = (n: number) => useMatch.getState().apply((s) => domain.setMatchNumber(s, n));

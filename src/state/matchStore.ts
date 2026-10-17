@@ -19,6 +19,8 @@ interface MatchStore extends MatchState {
   timer: TimerAnchor | null;
   /** Only the most recent recording is kept, like the original app deleting older files. */
   latestVideo: RecordedVideo | null;
+  /** A minute of unwillingness to fight was detected and the P-card dialog should open. */
+  pCardPrompt: boolean;
 
   /** Applies a pure domain transition. */
   apply: (transition: (s: MatchState) => MatchState) => void;
@@ -27,7 +29,13 @@ interface MatchStore extends MatchState {
   /** Recomputes secondsLeft of a running clock. */
   syncTimer: (now: number) => void;
   setLatestVideo: (video: RecordedVideo) => void;
+  setPCardPrompt: (open: boolean) => void;
 }
+
+const matchStateOf = (s: MatchState): MatchState => {
+  const { leftScore, rightScore, secondsLeft, matchNumber, idleFromSeconds, pRed, pBlack } = s;
+  return { leftScore, rightScore, secondsLeft, matchNumber, idleFromSeconds, pRed, pBlack };
+};
 
 const secondsAt = (timer: TimerAnchor, now: number) =>
   remainingSeconds(timer.secondsAtStart, now - timer.startedAt);
@@ -36,11 +44,9 @@ export const useMatch = create<MatchStore>()((set, get) => ({
   ...initialMatchState,
   timer: null,
   latestVideo: null,
+  pCardPrompt: false,
 
-  apply: (transition) => {
-    const { leftScore, rightScore, secondsLeft, matchNumber } = get();
-    set(transition({ leftScore, rightScore, secondsLeft, matchNumber }));
-  },
+  apply: (transition) => set(transition(matchStateOf(get()))),
 
   startTimer: (now) => {
     if (get().timer) return;
@@ -65,6 +71,8 @@ export const useMatch = create<MatchStore>()((set, get) => ({
     if (previous) URL.revokeObjectURL(previous.url);
     set({ latestVideo: video });
   },
+
+  setPCardPrompt: (open) => set({ pCardPrompt: open }),
 }));
 
 export const selectIsTimerRunning = (s: MatchStore) => s.timer !== null;

@@ -35,4 +35,17 @@ export const fr: Messages = {
   matchNumberChangedMessage: 'Le numéro de match a été changé!',
   timerChangedMessage: 'Le temps restant a été changé!',
   matchNumberSuffix: 'Set',
+  pCardOptionText: 'Cartons P (non-combativité)',
+  pCardOptionSubText:
+    'Pour l’élimination directe et les épreuves par équipes. Après une minute de combat sans touche, le chronomètre s’arrête et un carton P est proposé. Activez le compteur de numéro de match pour les équipes.',
+  pCardButtonText: 'P',
+  pCardDialogTitle: 'Non-combativité',
+  pRedMessage: 'Une minute sans touche : carton P rouge aux deux côtés (une touche chacun).',
+  pRedButtonText: 'Carton P rouge',
+  pBlackMessage: 'Carton P noir à {loser}, qui a le score le plus bas. {winner} gagne.',
+  pBlackButtonText: 'Carton P noir',
+  pBlackTieMessage:
+    'Scores égaux : le côté le moins bien classé au classement initial reçoit le carton P noir. Quel côté est le mieux classé ?',
+  pCardUnavailableMessage: 'Aucun carton P ne peut être donné maintenant.',
+  revokePCardButtonText: 'Annuler le dernier carton P',
 };

@@ -13,6 +13,7 @@ describe('settings', () => {
       videoPreviewPosition: 'right',
       doubleButtonEnable: true,
       matchNumberCountEnable: false,
+      pCardEnable: false,
     });
   });
 

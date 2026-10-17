@@ -202,6 +202,31 @@ input {
 .score {
   flex: 1 1 0;
   font-weight: 800;
+  position: relative;
+}
+
+/* P-cards (unwillingness to fight) shown as small cards in the corner of the score. */
+.p-badges {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  display: flex;
+  gap: 4px;
+}
+
+.p-badge {
+  width: clamp(12px, 3vmin, 22px);
+  aspect-ratio: 3 / 4;
+  border-radius: 3px;
+  border: 1px solid var(--text);
+}
+
+.p-badge[data-card='red'] {
+  background: #d32f2f;
+}
+
+.p-badge[data-card='black'] {
+  background: #111;
 }
 
 .score > span {
@@ -289,8 +314,13 @@ input {
 }
 
 .double,
-.reset {
+.reset,
+.p-card {
   flex: 1 1 0;
+}
+
+.p-card {
+  font-variant-numeric: tabular-nums;
 }
 
 .start-stop {
@@ -305,6 +335,7 @@ input {
 
 .double,
 .reset,
+.p-card,
 .start-stop {
   padding: 0 0.5rem;
   font-size: clamp(0.8rem, 2.4vmin, 1.25rem);

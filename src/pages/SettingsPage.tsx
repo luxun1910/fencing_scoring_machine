@@ -72,6 +72,7 @@ export const SettingsPage = () => (
       />
       <Choice setting="doubleButtonEnable" legend={t.doubleButtonOptionText} options={onOff} />
       <Choice setting="matchNumberCountEnable" legend={t.matchNumberCountOptionText} options={onOff} />
+      <Choice setting="pCardEnable" legend={t.pCardOptionText} hint={t.pCardOptionSubText} options={onOff} />
       <a className="link" href={PRIVACY_POLICY_URL} target="_blank" rel="noreferrer">
         {t.privacyPolicy}
       </a>

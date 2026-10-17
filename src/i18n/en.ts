@@ -30,6 +30,19 @@ export const en = {
   matchNumberChangedMessage: 'The match number has changed!',
   timerChangedMessage: 'The remaining time has changed!',
   matchNumberSuffix: 'Set',
+  pCardOptionText: 'P-cards (unwillingness to fight)',
+  pCardOptionSubText:
+    'For direct elimination and team events. After one minute of fencing without a touch the clock stops and a P-card is proposed. Turn on the match number counter for team events.',
+  pCardButtonText: 'P',
+  pCardDialogTitle: 'Unwillingness to fight',
+  pRedMessage: 'One minute without a touch: a P-red card to both sides (one touch each).',
+  pRedButtonText: 'Award P-red',
+  pBlackMessage: 'P-black card to {loser}, who has the lower score. {winner} wins.',
+  pBlackButtonText: 'Award P-black',
+  pBlackTieMessage:
+    'The scores are equal: the side with the lower initial seeding gets the P-black card. Which side has the higher seed?',
+  pCardUnavailableMessage: 'No P-card can be awarded now.',
+  revokePCardButtonText: 'Revoke the last P-card',
 } as const;
 
 export type MessageKey = keyof typeof en;
