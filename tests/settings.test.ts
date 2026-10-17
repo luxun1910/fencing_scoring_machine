@@ -1,4 +1,4 @@
-import { resolveLocale } from '../src/i18n';
+import { currentLocale, resolveLocale, t } from '../src/i18n';
 import { en } from '../src/i18n/en';
 import { fr } from '../src/i18n/fr';
 import { ja } from '../src/i18n/ja';
@@ -14,6 +14,7 @@ describe('settings', () => {
       doubleButtonEnable: true,
       matchNumberCountEnable: false,
       pCardEnable: false,
+      language: 'auto',
     });
   });
 
@@ -32,6 +33,16 @@ describe('i18n', () => {
     expect(resolveLocale(['fr-CA'])).toBe('fr');
     expect(resolveLocale(['zh-CN'])).toBe('en');
     expect(resolveLocale([])).toBe('en');
+  });
+
+  it('follows the language chosen in settings', () => {
+    useSettings.getState().set('language', 'fr');
+    expect(currentLocale()).toBe('fr');
+    expect(t.settingsTitle).toBe(fr.settingsTitle);
+    useSettings.getState().set('language', 'ja');
+    expect(t.settingsTitle).toBe(ja.settingsTitle);
+    useSettings.getState().set('language', 'auto');
+    expect(currentLocale()).toBe(resolveLocale(navigator.languages));
   });
 
   it('translates every key', () => {

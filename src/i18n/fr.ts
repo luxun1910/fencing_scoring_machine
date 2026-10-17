@@ -56,4 +56,6 @@ export const fr: Messages = {
   installIosStep2: 'Faites défiler et touchez « Sur l’écran d’accueil ».',
   installIosStep3: 'Touchez « Ajouter ». L’application s’ouvre ensuite depuis son icône.',
   dismiss: 'Fermer',
+  languageOptionText: 'Langue',
+  languageAuto: 'Auto',
 };

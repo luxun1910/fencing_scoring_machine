@@ -38,21 +38,33 @@ const Choice = <K extends keyof Settings>({ setting, legend, hint, options }: Ch
   );
 };
 
-const onOff = [
-  { value: true, label: t.enable },
-  { value: false, label: t.disable },
-] as const;
+const onOff = () =>
+  [
+    { value: true, label: t.enable },
+    { value: false, label: t.disable },
+  ] as const;
 
 export const SettingsPage = () => (
   <div className="sub-page">
     <PageHeader title={t.settingsTitle} />
     <div className="settings-list">
-      <Choice setting="videoEnable" legend={t.videoEnableOptionText} options={onOff} />
+      <Choice
+        setting="language"
+        legend={t.languageOptionText}
+        options={[
+          { value: 'auto', label: t.languageAuto },
+          // Language names stay in their own language so they can be found from any locale.
+          { value: 'en', label: 'English' },
+          { value: 'ja', label: '日本語' },
+          { value: 'fr', label: 'Français' },
+        ]}
+      />
+      <Choice setting="videoEnable" legend={t.videoEnableOptionText} options={onOff()} />
       <Choice
         setting="videoAutoSave"
         legend={t.videoAutosaveOptionText}
         hint={t.videoAutosaveOptionSubText}
-        options={onOff}
+        options={onOff()}
       />
       <Choice
         setting="videoPreviewSize"
@@ -71,9 +83,14 @@ export const SettingsPage = () => (
           { value: 'right', label: t.right },
         ]}
       />
-      <Choice setting="doubleButtonEnable" legend={t.doubleButtonOptionText} options={onOff} />
-      <Choice setting="matchNumberCountEnable" legend={t.matchNumberCountOptionText} options={onOff} />
-      <Choice setting="pCardEnable" legend={t.pCardOptionText} hint={t.pCardOptionSubText} options={onOff} />
+      <Choice setting="doubleButtonEnable" legend={t.doubleButtonOptionText} options={onOff()} />
+      <Choice setting="matchNumberCountEnable" legend={t.matchNumberCountOptionText} options={onOff()} />
+      <Choice
+        setting="pCardEnable"
+        legend={t.pCardOptionText}
+        hint={t.pCardOptionSubText}
+        options={onOff()}
+      />
       <InstallButton />
       <a className="link" href={PRIVACY_POLICY_URL} target="_blank" rel="noreferrer">
         {t.privacyPolicy}

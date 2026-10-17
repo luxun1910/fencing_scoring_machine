@@ -1,3 +1,4 @@
+import { useSettings } from '../state/settingsStore';
 import { en, type Messages } from './en';
 import { fr } from './fr';
 import { ja } from './ja';
@@ -14,7 +15,17 @@ export const resolveLocale = (languages: readonly string[]): Locale => {
   return 'en';
 };
 
-export const locale = resolveLocale(typeof navigator === 'undefined' ? [] : navigator.languages);
+/** The language chosen in settings, or the browser's preference when set to auto. */
+export const currentLocale = (): Locale => {
+  const language = useSettings.getState().language;
+  if (language !== 'auto') return language;
+  return resolveLocale(typeof navigator === 'undefined' ? [] : navigator.languages);
+};
 
-/** Messages for the current locale. The language never changes while the page is open. */
-export const t: Messages = catalogs[locale];
+/**
+ * Messages for the current locale. Each lookup reads the current language, so read it at
+ * render time (not at module scope); App remounts the pages when the language changes.
+ */
+export const t: Messages = new Proxy({} as Messages, {
+  get: (_, key) => catalogs[currentLocale()][key as keyof Messages],
+});

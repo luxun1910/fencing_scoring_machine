@@ -52,4 +52,6 @@ export const ja: Messages = {
   installIosStep2: '下にスクロールして「ホーム画面に追加」をタップします。',
   installIosStep3: '「追加」をタップすると、ホーム画面のアイコンからアプリとして起動できます。',
   dismiss: '閉じる',
+  languageOptionText: '言語',
+  languageAuto: '自動',
 };
