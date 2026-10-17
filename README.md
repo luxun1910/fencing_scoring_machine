@@ -43,6 +43,8 @@ To regenerate the PWA icons from `assets/icons/`, run `npm run icons`.
 
 ## Behaviour notes
 
+- The app installs to the home screen as a PWA. Chromium browsers (Android Chrome, Edge, desktop Chrome) get an "Install app" button on a one-time banner on the scoreboard and in Settings. iOS Safari has no install API, so the same places show the steps instead (Share → Add to Home Screen). Both are hidden when the app is already running installed.
+
 - Any touch (+/−/Double) or Reset stops the clock and the recording. Start/Stop toggles both.
 - Only the latest recording is kept, in memory. "Save" uses the share sheet when available (on phones this offers saving to the photo library), otherwise a download. Autosave always downloads.
 - The bout clock is derived from elapsed time, so it does not drift. It pauses when the page goes to the background, and the screen stays on while it runs.

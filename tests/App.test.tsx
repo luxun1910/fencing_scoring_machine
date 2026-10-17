@@ -2,6 +2,7 @@ import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { App } from '../src/App';
 import { t } from '../src/i18n';
+import { useInstall } from '../src/state/installStore';
 import { useMatch } from '../src/state/matchStore';
 import { defaultSettings, useSettings } from '../src/state/settingsStore';
 
@@ -82,6 +83,40 @@ describe('scoring page', () => {
     render(<App />);
     await user.click(screen.getByText(new RegExp(t.startStopButtonText.replace('/', '\\/'))));
     expect(screen.queryByLabelText(t.settingsTitle)).not.toBeInTheDocument();
+  });
+});
+
+describe('install banner', () => {
+  afterEach(() => {
+    useInstall.setState({ deferredPrompt: null, installed: false, bannerDismissed: false });
+  });
+
+  const offerPrompt = () => {
+    const prompt = vi.fn(() => Promise.resolve());
+    const event = Object.assign(new Event('beforeinstallprompt'), {
+      prompt,
+      userChoice: Promise.resolve({ outcome: 'accepted' as const, platform: 'web' }),
+    });
+    useInstall.setState({ deferredPrompt: event });
+    return prompt;
+  };
+
+  it('installs from the banner when the browser offers a prompt', async () => {
+    const prompt = offerPrompt();
+    const user = userEvent.setup();
+    render(<App />);
+
+    await user.click(within(screen.getByRole('complementary')).getByText(t.installButtonText));
+    expect(prompt).toHaveBeenCalledOnce();
+    expect(screen.queryByRole('complementary')).not.toBeInTheDocument();
+  });
+
+  it('can be dismissed', async () => {
+    offerPrompt();
+    const user = userEvent.setup();
+    render(<App />);
+    await user.click(screen.getByLabelText(t.dismiss));
+    expect(screen.queryByText(t.installBannerText)).not.toBeInTheDocument();
   });
 });
 

@@ -14,3 +14,7 @@ export const BackIcon = () => <Icon d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-
 export const SaveIcon = () => (
   <Icon d="M17 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7l-4-4zm-5 16a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm3-10H5V5h10v4z" />
 );
+
+export const CloseIcon = () => (
+  <Icon d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+);
