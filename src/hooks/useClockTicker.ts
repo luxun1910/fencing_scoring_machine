@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { checkNonCombativity } from '../app/actions';
 import { msUntilNextTick, remainingSeconds } from '../domain/time';
 import { useMatch } from '../state/matchStore';
 
@@ -15,6 +16,9 @@ export const useClockTicker = () => {
     const step = () => {
       const now = performance.now();
       useMatch.getState().syncTimer(now);
+      checkNonCombativity();
+      // A halt for unwillingness to fight clears the timer, which also tears this effect down.
+      if (!useMatch.getState().timer) return;
       const elapsed = now - timer.startedAt;
       if (remainingSeconds(timer.secondsAtStart, elapsed) === 0) return;
       // Small slack so the callback lands just after the boundary, not just before it.

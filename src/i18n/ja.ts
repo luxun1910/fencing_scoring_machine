@@ -32,4 +32,16 @@ export const ja: Messages = {
   matchNumberChangedMessage: 'セット数が変更されました',
   timerChangedMessage: '残り時間が変更されました',
   matchNumberSuffix: 'Set',
+  pCardOptionText: 'Pカード（対戦無意欲）',
+  pCardOptionSubText:
+    'エリミナシオン・ディレクト／団体戦用。トゥシュなしで競技時間が1分経過すると時計を止めてPカードを提示します。団体戦ではセット数カウントを有効にしてください。',
+  pCardButtonText: 'P',
+  pCardDialogTitle: '対戦無意欲（ノン・コンバティビティ）',
+  pRedMessage: 'トゥシュなしで1分経過：両者にPレッドカード（両者に1点）。',
+  pRedButtonText: 'Pレッドを提示',
+  pBlackMessage: 'スコアが低い{loser}にPブラックカード。{winner}の勝利です。',
+  pBlackButtonText: 'Pブラックを提示',
+  pBlackTieMessage: '同点のため、初期シード順位が下位の側にPブラックカード。シード上位はどちらですか？',
+  pCardUnavailableMessage: '現在Pカードは提示できません。',
+  revokePCardButtonText: '直前のPカードを取り消す',
 };

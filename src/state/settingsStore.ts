@@ -13,6 +13,8 @@ export interface Settings {
   videoPreviewPosition: PreviewPosition;
   doubleButtonEnable: boolean;
   matchNumberCountEnable: boolean;
+  /** P-red / P-black cards for unwillingness to fight (FIE t.124). */
+  pCardEnable: boolean;
 }
 
 export const defaultSettings: Settings = {
@@ -22,6 +24,7 @@ export const defaultSettings: Settings = {
   videoPreviewPosition: 'right',
   doubleButtonEnable: true,
   matchNumberCountEnable: false,
+  pCardEnable: false,
 };
 
 interface SettingsStore extends Settings {
@@ -70,6 +73,7 @@ export const useSettings = create<SettingsStore>()(
         videoPreviewPosition: s.videoPreviewPosition,
         doubleButtonEnable: s.doubleButtonEnable,
         matchNumberCountEnable: s.matchNumberCountEnable,
+        pCardEnable: s.pCardEnable,
       }),
     },
   ),

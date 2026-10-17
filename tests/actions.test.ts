@@ -110,3 +110,66 @@ describe('recordings', () => {
     expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:old');
   });
 });
+
+describe('unwillingness to fight', () => {
+  const fenceFor = (ms: number) => {
+    vi.advanceTimersByTime(ms);
+    useMatch.getState().syncTimer(performance.now());
+    actions.checkNonCombativity();
+  };
+
+  it('halts the bout after one minute without a touch and asks for a P-card', () => {
+    useSettings.setState({ pCardEnable: true });
+    actions.pushTimer();
+    fenceFor(59_500);
+    expect(isRunning()).toBe(true);
+    fenceFor(1_000);
+    const s = useMatch.getState();
+    expect(isRunning()).toBe(false);
+    expect(s.pCardPrompt).toBe(true);
+    expect(s.secondsLeft).toBe(120);
+    expect(camera.stopRecording).toHaveBeenCalledOnce();
+  });
+
+  it('does nothing when the setting is off', () => {
+    actions.pushTimer();
+    fenceFor(61_000);
+    expect(isRunning()).toBe(true);
+    expect(useMatch.getState().pCardPrompt).toBe(false);
+  });
+
+  it('restarts the minute after a touch', () => {
+    useSettings.setState({ pCardEnable: true });
+    actions.pushTimer();
+    fenceFor(40_000);
+    actions.scoreUp('left');
+    actions.pushTimer();
+    fenceFor(40_000);
+    expect(isRunning()).toBe(true);
+  });
+
+  it('awards P-red and P-black, and dismissing restarts the minute', () => {
+    useSettings.setState({ pCardEnable: true });
+    actions.pushTimer();
+    fenceFor(60_000);
+    actions.issuePRed();
+    expect(useMatch.getState()).toMatchObject({
+      leftScore: 1,
+      rightScore: 1,
+      pRed: true,
+      pCardPrompt: false,
+    });
+
+    actions.pushTimer();
+    fenceFor(60_000);
+    actions.dismissPCard();
+    actions.pushTimer();
+    fenceFor(1_000);
+    expect(isRunning()).toBe(true);
+
+    actions.issuePBlack('right');
+    expect(isRunning()).toBe(false);
+    expect(useMatch.getState().pBlack).toBe('right');
+    expect(actions.nextPCard()).toBeNull();
+  });
+});
