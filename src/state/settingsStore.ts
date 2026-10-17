@@ -1,8 +1,11 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist, type StateStorage } from 'zustand/middleware';
+import type { Locale } from '../i18n';
 
 export type PreviewSize = 1 | 2 | 3;
 export type PreviewPosition = 'left' | 'right';
+/** 'auto' follows the browser's language preferences. */
+export type LanguageSetting = 'auto' | Locale;
 
 export interface Settings {
   videoEnable: boolean;
@@ -15,6 +18,7 @@ export interface Settings {
   matchNumberCountEnable: boolean;
   /** P-red / P-black cards for unwillingness to fight (FIE t.124). */
   pCardEnable: boolean;
+  language: LanguageSetting;
 }
 
 export const defaultSettings: Settings = {
@@ -25,6 +29,7 @@ export const defaultSettings: Settings = {
   doubleButtonEnable: true,
   matchNumberCountEnable: false,
   pCardEnable: false,
+  language: 'auto',
 };
 
 interface SettingsStore extends Settings {
@@ -74,6 +79,7 @@ export const useSettings = create<SettingsStore>()(
         doubleButtonEnable: s.doubleButtonEnable,
         matchNumberCountEnable: s.matchNumberCountEnable,
         pCardEnable: s.pCardEnable,
+        language: s.language,
       }),
     },
   ),

@@ -51,6 +51,8 @@ export const en = {
   installIosStep2: 'Scroll down and tap “Add to Home Screen”.',
   installIosStep3: 'Tap “Add”. The app then opens from its icon on your Home Screen.',
   dismiss: 'Dismiss',
+  languageOptionText: 'Language',
+  languageAuto: 'Auto',
 } as const;
 
 export type MessageKey = keyof typeof en;
