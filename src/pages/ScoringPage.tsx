@@ -3,6 +3,7 @@ import { Link } from 'wouter';
 import { CameraView } from '../components/CameraView';
 import { ControlPanel } from '../components/ControlPanel';
 import { InstallBanner } from '../components/InstallBanner';
+import { UpdateBanner } from '../components/UpdateBanner';
 import { SettingsIcon } from '../components/icons';
 import { IN_APP } from '../app/navigation';
 import { ScoreColumn } from '../components/ScoreColumn';
@@ -19,6 +20,7 @@ export const ScoringPage = () => {
   return (
     <div className="scoring-screen">
       {/* Above the board rather than over it, so it never hides a score. */}
+      {!running && <UpdateBanner />}
       {!running && <InstallBanner />}
       <div
         className="scoring-page"

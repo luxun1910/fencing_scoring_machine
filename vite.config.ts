@@ -6,7 +6,9 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: 'autoUpdate',
+      // Registered from src/state/updateStore.ts, which decides when a new version may reload the page.
+      registerType: 'prompt',
+      injectRegister: false,
       includeAssets: ['favicon.png', 'apple-touch-icon.png'],
       manifest: {
         name: 'Fencing Scoring Machine',

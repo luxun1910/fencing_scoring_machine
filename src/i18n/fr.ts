@@ -58,4 +58,6 @@ export const fr: Messages = {
   dismiss: 'Fermer',
   languageOptionText: 'Langue',
   languageAuto: 'Auto',
+  updateBannerText: 'Une nouvelle version est disponible. Rechargez pour l’utiliser.',
+  updateButtonText: 'Mettre à jour',
 };
