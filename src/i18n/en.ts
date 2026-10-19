@@ -53,6 +53,8 @@ export const en = {
   dismiss: 'Dismiss',
   languageOptionText: 'Language',
   languageAuto: 'Auto',
+  updateBannerText: 'A new version of the app is available.',
+  updateButtonText: 'Update',
 } as const;
 
 export type MessageKey = keyof typeof en;

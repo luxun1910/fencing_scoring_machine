@@ -1,4 +1,5 @@
 /// <reference types="vite/client" />
+/// <reference types="vite-plugin-pwa/vanillajs" />
 
 interface ImportMetaEnv {
   /** Appended to the Start/Stop label (was the `appNamePrefix` dart-define). */

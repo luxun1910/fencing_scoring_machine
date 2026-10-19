@@ -54,4 +54,6 @@ export const ja: Messages = {
   dismiss: '閉じる',
   languageOptionText: '言語',
   languageAuto: '自動',
+  updateBannerText: '新しいバージョンがあります。更新すると反映されます。',
+  updateButtonText: '更新',
 };

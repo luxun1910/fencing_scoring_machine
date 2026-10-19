@@ -1,0 +1,13 @@
+# Cloudflare static assets: always revalidate the entry points so a deploy is picked up at once.
+/
+  Cache-Control: no-cache
+/index.html
+  Cache-Control: no-cache
+/sw.js
+  Cache-Control: no-cache
+/manifest.webmanifest
+  Cache-Control: no-cache
+
+# Content-hashed bundles never change under the same name.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
